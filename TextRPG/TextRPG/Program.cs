@@ -9,9 +9,6 @@
             while (GameManager.isRun)
             {
                 GameManager.Update();
-
-                Console.Clear();
-                Thread.Sleep(100);
             }
 
             GameManager.Destroy();
