@@ -1,28 +1,28 @@
 ﻿namespace TextRPG
-{ 
+{
     //캐릭터 인터페이스
 
-        public interface Charater
+    public interface Charater
     {
         int Level { get; }
         string Name { get; }
         int Health { get; set; }
         int Attack { get; }
-        bool IsDead {  get; }
-        void TakeDamage(int damage);                
+        bool IsDead { get; }
+        void TakeDamage(int damage);
     }
-    
-    
-    
+
+
+
     //몬스터 클래스
 
     public class Monster : Charater
     {
-       public int Level { get; }
-       public string Name { get; }
-       public int Health { get; set;  }
-       public int Attack { get; }
-       public bool IsDead => Health <= 0;
+        public int Level { get; }
+        public string Name { get; }
+        public int Health { get; set; }
+        public int Attack { get; }
+        public bool IsDead => Health <= 0;
         public Monster(int level, string name, int health, int attack)
         {
             Level = level;
@@ -51,7 +51,7 @@
             }
         }
 
-        public void TakeDamage(int damage) 
+        public void TakeDamage(int damage)
         {
             if (IsDead)
             {
@@ -67,7 +67,7 @@
 
         public class Goblin : Monster
         {
-            public Goblin(int level, int attack, string name) : base(level,name, 50, attack) { } // 체력 50
+            public Goblin(int level, int attack, string name) : base(level, name, 50, attack) { } // 체력 50
         }
 
 
