@@ -7,12 +7,7 @@ namespace TextRPG
     {
         public override void Load()
         {
-
-
             GameManager.Scene.CloseScene();
         }
-
-        #region PrintFormat
-        #endregion
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace TextRPG
+﻿using Newtonsoft.Json.Linq;
+
+namespace TextRPG
 {
     public class BaseScene
     {
