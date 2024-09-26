@@ -2,7 +2,7 @@
 {
     internal class Stageinfo
     {
-        public class stageinfo
+        public class StageInfo
         {
             // mob 쪽 코드 작성되면 옮길 곳 , 지금은 출력을 위한 예시
 
@@ -13,48 +13,51 @@
             public int[] mobhp = new int[] { 1, 2, 3 }; // 몹 체력
 
             public int stagecount = 1; // 스테이지
-        }
-        static void Main(string[] args)
-        {
-            stageinfo stageinfo = new stageinfo();
 
-            void InDungeon() // 던전 입장 시 
+            static void mobRandom()
             {
+                StageInfo stageinfo = new StageInfo();
 
-                // 전투 쪽 UI 띄울 곳
-
-                while (true) // 몹 등장 수 , 종류 랜덤 설정
+                void InDungeon() // 던전 입장 시 
                 {
-                    Random random = new Random();
 
-                    int mobcount = random.Next(1, 4); // 등장하는 몹의 수
+                    // 전투 쪽 UI 띄울 곳
 
-                    switch (stageinfo.stagecount)
+                    while (true) // 몹 등장 수 , 종류 랜덤 설정
                     {
-                        case 1:
+                        Random random = new Random();
 
-                            for (int i = 0; i < mobcount; i++)
-                            {
-                                Random random1 = new Random();
+                        int mobcount = random.Next(1, 4); // 등장하는 몹의 수
 
-                                int mobtype = random1.Next(0, 3); // 등장하는 몹의 종류 
+                        switch (stageinfo.stagecount)
+                        {
+                            case 1:
 
-                                Console.WriteLine("Lv." + stageinfo.moblevel[mobtype] + " " + stageinfo.mobname[mobtype] + " Hp " + stageinfo.mobhp[mobtype]); // 몹 정보 출력
-                            }
+                                for (int i = 0; i < mobcount; i++)
+                                {
+                                    Random random1 = new Random();
 
-                            break;
+                                    int mobtype = random1.Next(0, 3); // 등장하는 몹의 종류 
 
+                                    Console.WriteLine("Lv." + stageinfo.moblevel[mobtype] + " " + stageinfo.mobname[mobtype] + " Hp " + stageinfo.mobhp[mobtype]); // 몹 정보 출력
+                                }
+
+                                break;
+
+                        }
+
+                        // 전투 쪽 함수 불러올 곳 
+
+                        // 전투 완료시 결과 출력 , 클리어 시 stageinfo.stagecount++;
+
+                        break;
                     }
-
-                    // 전투 쪽 함수 불러올 곳 
-
-                    // 전투 완료시 결과 출력 , 클리어 시 stageinfo.stagecount++;
-
-                    break;
                 }
+
+                InDungeon();
+
             }
 
-            InDungeon();
 
         }
 
