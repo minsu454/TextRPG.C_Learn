@@ -8,17 +8,6 @@ namespace TextRPG
 
     public static class GameManager
     {
-        static void Main(string[] args)
-        {
-            Pl p = new Pl("minsu", 100, 10);
-
-            string serialize = JsonConvert.SerializeObject(p);
-            Save.Save(p);
-
-
-            Console.WriteLine(serialize);
-        }
-
         public static bool isRun = true;
 
         public readonly static SceneManager Scene = new SceneManager();         //씬 매니저
