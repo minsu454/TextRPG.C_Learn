@@ -31,6 +31,9 @@
                 case SceneType.Rest:
                     scene = new RestScene();
                     break;
+                case SceneType.Quest:
+                    scene = new QuestScene();
+                    break;
                 default:
                     break;
             }
