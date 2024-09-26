@@ -1,0 +1,14 @@
+C:\Users\psyij\source\repos\Test_Player\Test_Player\bin\Debug\net8.0\Test_Player.exe
+C:\Users\psyij\source\repos\Test_Player\Test_Player\bin\Debug\net8.0\Test_Player.deps.json
+C:\Users\psyij\source\repos\Test_Player\Test_Player\bin\Debug\net8.0\Test_Player.runtimeconfig.json
+C:\Users\psyij\source\repos\Test_Player\Test_Player\bin\Debug\net8.0\Test_Player.dll
+C:\Users\psyij\source\repos\Test_Player\Test_Player\bin\Debug\net8.0\Test_Player.pdb
+C:\Users\psyij\source\repos\Test_Player\Test_Player\obj\Debug\net8.0\Test_Player.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\psyij\source\repos\Test_Player\Test_Player\obj\Debug\net8.0\Test_Player.AssemblyInfoInputs.cache
+C:\Users\psyij\source\repos\Test_Player\Test_Player\obj\Debug\net8.0\Test_Player.AssemblyInfo.cs
+C:\Users\psyij\source\repos\Test_Player\Test_Player\obj\Debug\net8.0\Test_Player.csproj.CoreCompileInputs.cache
+C:\Users\psyij\source\repos\Test_Player\Test_Player\obj\Debug\net8.0\Test_Player.dll
+C:\Users\psyij\source\repos\Test_Player\Test_Player\obj\Debug\net8.0\refint\Test_Player.dll
+C:\Users\psyij\source\repos\Test_Player\Test_Player\obj\Debug\net8.0\Test_Player.pdb
+C:\Users\psyij\source\repos\Test_Player\Test_Player\obj\Debug\net8.0\Test_Player.genruntimeconfig.cache
+C:\Users\psyij\source\repos\Test_Player\Test_Player\obj\Debug\net8.0\ref\Test_Player.dll
