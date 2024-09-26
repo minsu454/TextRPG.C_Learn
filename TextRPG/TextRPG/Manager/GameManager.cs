@@ -11,7 +11,8 @@ namespace TextRPG
         public static bool isRun = true;
 
         public readonly static SceneManager Scene = new SceneManager();         //씬 매니저
-        public readonly static SaveManager Save = new SaveManager();
+        public readonly static SaveManager Save = new SaveManager();            //저장 매니저
+        public readonly static QuestManager Quest = new QuestManager();         //퀘스트 매니저
 
         /// <summary>
         /// 생성 함수
@@ -20,6 +21,7 @@ namespace TextRPG
         {
             isRun = true;
             Scene.Init();
+            Quest.Init();
         }
 
         /// <summary>

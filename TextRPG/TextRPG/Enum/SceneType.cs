@@ -11,7 +11,8 @@
         PlayerInfo = 1 << 2,    //플레이어정보
         Inventory = 1 << 3,     //인벤토리
         Store = 1 << 4,         //상점
-        Dungeon = 1 << 5,       //던전
-        Rest = 1 << 6,          //휴식
+        Quest = 1 << 5,         //퀘스트
+        Dungeon = 1 << 6,       //던전
+        Rest = 1 << 7,          //휴식
     }
 }
