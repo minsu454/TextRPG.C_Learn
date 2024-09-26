@@ -7,6 +7,11 @@ namespace TextRPG
     {
         public override void Load()
         {
+            GameManager.Event.Dispatch(GameEventType.BuyItem, new BuyItemEventArgs()
+            {
+                Name = "무기", Count = 1
+            });
+
             GameManager.Scene.CloseScene();
         }
     }

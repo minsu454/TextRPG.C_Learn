@@ -8,33 +8,13 @@
         {
             foreach (QuestNameType type in Enum.GetValues(typeof(QuestNameType)))
             {
-                BaseQuest? scene = QuestFactory.CreateQuest(type);
+                BaseQuest? quest = QuestFactory.CreateQuest(type);
 
-                if (scene == null)
+                if (quest == null)
                     continue;
 
-                questDic.Add(type, scene);
-            }
-        }
-
-        public void Check(QuestNameType type)
-        {
-            BaseQuest quest = questDic[type];
-
-            switch (quest.type)
-            {
-                case QuestType.PlayerStat:
-                    { 
-                        IQuestPlayerStat? q = quest as IQuestPlayerStat;
-
-                        if (q != null)
-                            return;
-
-                        q.Check("방패");
-                    }
-                    break;
-                case QuestType.Dungeon:
-                    break;
+                quest.Init();
+                questDic.Add(type, quest);
             }
         }
     }

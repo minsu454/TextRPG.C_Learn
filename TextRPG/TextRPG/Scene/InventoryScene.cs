@@ -11,6 +11,8 @@ namespace TextRPG
         public override void Load()
         {
 
+            //GameManager.Quest.Check(QuestNameType.Test1, new Test1QuestArgs());
+
             GameManager.Scene.CloseScene();
 
         }
