@@ -56,7 +56,7 @@
             playerGold = gold;
             Console.WriteLine($"{job}를 선택하셨습니다.");
         }
-        // 마을로 이동
+        // 로비로 이동
         public void GoToVillage()
         {
             Console.WriteLine($"\n환영합니다, {playerName} {playerJob}님, 스파르타 던전에 오신 걸 환영합니다.");
