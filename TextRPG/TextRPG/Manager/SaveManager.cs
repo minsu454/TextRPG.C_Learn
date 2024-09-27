@@ -16,10 +16,8 @@ namespace TextRPG
         }
 
         /// <summary>
-        /// 
+        /// 데이터 로드해주는 함수
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
         public T Load<T>() where T : class, new()
         {
             if (!File.Exists(path))

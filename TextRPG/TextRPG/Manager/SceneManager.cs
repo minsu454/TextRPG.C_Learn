@@ -13,6 +13,7 @@
             foreach (SceneType type in Enum.GetValues(typeof(SceneType)))
             {
                 BaseScene? scene = SceneFactory.CreateScene(type);
+                scene?.Init();
 
                 if (scene == null)
                     continue;

@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using System.Reflection.Emit;
 using System.Text;
+using static TextRPG.Monster;
 
 namespace TextRPG
 {

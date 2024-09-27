@@ -2,14 +2,9 @@
 
 namespace TextRPG
 {
-    public class BaseScene
+    public abstract class BaseScene
     {
-        public BaseScene()
-        {
-            Init();
-        }
-
-        protected virtual void Init() { }
-        public virtual void Load() {}
+        public virtual void Init() { }
+        public abstract void Load();
     }
 }

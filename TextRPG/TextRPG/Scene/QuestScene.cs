@@ -11,10 +11,14 @@ namespace TextRPG
         public override void Load()
         {
             int input = 0;
+            QuestType quest = QuestType.None;
 
             input = QuestChoicePrintAndInput();
-            input = QuestExplanationPrintAndInput((QuestNameType)input);
 
+            quest = (QuestType)input;
+            input = QuestExplanationPrintAndInput(quest);
+
+            GameManager.Quest.AddQuest(quest);
 
             GameManager.Scene.CloseScene();
         }
@@ -29,11 +33,11 @@ namespace TextRPG
 
             sb.AppendLine("Quest!!");
 
-            int enumLength = Enum.GetValues(typeof(QuestNameType)).Length;
+            int enumLength = Enum.GetValues(typeof(QuestType)).Length;
 
             for (int i = 1; i < enumLength; i++)
             {
-                sb.AppendLine($"{i}. {GameManager.Quest.questDic[(QuestNameType)i].name}");
+                sb.AppendLine($"{i}. {GameManager.Quest.questDic[(QuestType)i].name}");
             }
             sb.AppendLine();
 
@@ -49,7 +53,7 @@ namespace TextRPG
         /// <summary>
         /// 퀘스트 설명해주는 화면, 결과 값 반환 함수
         /// </summary>
-        private int QuestExplanationPrintAndInput(QuestNameType type)
+        private int QuestExplanationPrintAndInput(QuestType type)
         {
             BaseQuest quest = GameManager.Quest.questDic[type];
             StringBuilder sb = new StringBuilder();
