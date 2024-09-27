@@ -8,7 +8,8 @@
 >> ";
 
         public static string inputErrorFormats =
-@"잘못된 입력입니다.
+@"
+잘못된 입력입니다.
 >> ";
         #endregion
 
@@ -23,9 +24,10 @@
 
             while (true)
             {
-                input = int.Parse(Console.ReadLine()!);
+                input = (int)Console.ReadKey().Key;
+                input -= 48;
 
-                if (input <= (useZero ? count - 1 : count))
+                if (input <= (useZero ? count - 1 : count) && input >= (useZero ? 0 : 1))
                 {
                     break;
                 }
