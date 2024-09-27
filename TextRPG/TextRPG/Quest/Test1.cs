@@ -28,7 +28,6 @@
             if (buyItem!.Name == "무기")
             {
                 state = QuestStateType.Completed;
-                Release();
             }
         }
     }
