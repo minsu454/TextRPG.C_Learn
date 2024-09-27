@@ -19,10 +19,7 @@ namespace TextRPG
                 Console.WriteLine($"{playerName}님, 어떤 직업을 선택하시겠습니까?");
                 ChooseJob();
                 GameManager.Scene.OpenScene(SceneType.Lobby);
-
             }
-
-
         }
 
         // 직업 선택 메서드
@@ -41,15 +38,19 @@ namespace TextRPG
                 switch (keyInfo.Key)
                 {
                     case ConsoleKey.D1:
+                        validSelection = true;
                         ShowJobDetails("전사", 10, 10, 80, 1500);
                         break;
                     case ConsoleKey.D2:
+                        validSelection = true;
                         ShowJobDetails("궁수", 12, 8, 90, 1500);
                         break;
                     case ConsoleKey.D3:
+                        validSelection = true;
                         ShowJobDetails("마법사", 15, 5, 60, 1500);
                         break;
                     case ConsoleKey.D4:
+                        validSelection = true;
                         ShowJobDetails("도적", 13, 7, 70, 1500);
                         break;
                     default:

@@ -7,6 +7,8 @@ namespace TextRPG
         public override void Load()
         {
 
+            GameManager.player.playerCurHealth = GameManager.player.playerMaxHealth;
+
             GameManager.Scene.CloseScene();
         }
 
