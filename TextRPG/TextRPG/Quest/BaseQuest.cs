@@ -1,8 +1,17 @@
 ﻿namespace TextRPG
 {
+    public enum QuestState
+    {
+        None = 0,           //아직안깸
+        Completed = 1,      //깼음
+        Rewarded = 2,       //보상받음
+
+    }
+
     public abstract class BaseQuest
     {
         public QuestType type;
+        public QuestState state;
 
         public string? name;
         public string? comment;
@@ -11,10 +20,7 @@
 
         public List<int> payList = new List<int>();
 
-        public BaseQuest() { Init(); }
-
-        public virtual void Init() {
-            
-        }
+        public abstract void Init();
+        public abstract void Release();
     }
 }

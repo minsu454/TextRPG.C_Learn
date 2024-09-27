@@ -14,5 +14,10 @@
         {
             return true;
         }
+
+        public override void Release()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

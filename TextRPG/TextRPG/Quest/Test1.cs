@@ -1,6 +1,13 @@
-﻿namespace TextRPG
+﻿
+namespace TextRPG
 {
-    public class Test1 : BaseQuest, IQuestPlayerStat
+    public class BuyItemEventArgs
+    {
+        public string? Name { get; set; }
+        public int Count { get; set; }
+    }
+
+    public class Test1 : BaseQuest
     {
 
         public override void Init()
@@ -9,17 +16,23 @@
             name = "무기구매";
             comment = "하나만 사보자";
             pay = "1000 G";
+
+            GameManager.Event.Subscribe(GameEventType.BuyItem, OnBuyItem);
         }
 
-        public bool Check(string statName)
+        public override void Release()
         {
-            return true;
+            GameManager.Event.Unsubscribe(GameEventType.BuyItem, OnBuyItem);
         }
 
-        public bool Check(string statName, int stat)
+        private void OnBuyItem(object args)
         {
-            return true;
-        }
+            BuyItemEventArgs? ar = args as BuyItemEventArgs;
 
+            if (ar.Name == "무기")
+            {
+                state = QuestState.Completed;
+            }
+        }
     }
 }
