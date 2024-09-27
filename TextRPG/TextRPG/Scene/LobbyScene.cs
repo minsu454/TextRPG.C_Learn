@@ -4,7 +4,7 @@
     {
         private int shiftCount;
 
-        protected override void Init()
+        public override void Init()
         {
             shiftCount = 1;
         }
@@ -12,7 +12,7 @@
         public override void Load()
         {
             Print.PrintScreen(lobbyFormat);
-            int input = Input.InputKey(6, true);
+            int input = Input.InputKey(7, true);
 
             GameManager.Scene.OpenScene((SceneType)(1 << input + shiftCount));
         }
@@ -24,9 +24,10 @@
 1. 상태 보기
 2. 인벤토리
 3. 상점
-4. 던전입장
-5. 휴식하기
-0. 저장하기
+4. 퀘스트
+5. 던전입장
+6. 휴식하기
+7. 저장하기
 
 ";
         #endregion

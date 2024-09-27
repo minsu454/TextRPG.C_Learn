@@ -1,9 +1,12 @@
 ﻿namespace TextRPG
 {
+    /// <summary>
+    /// 퀘스트 이름 타입
+    /// </summary>
     public enum QuestType
     {
         None = 0,
-        PlayerStat,
-        Dungeon,
+        Test1,
+        Test2
     }
 }
