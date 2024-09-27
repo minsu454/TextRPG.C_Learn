@@ -16,7 +16,8 @@ namespace TextRPG
         public readonly static EventManager Event = new EventManager();         //이벤트 매니저
 
         public static Player player = new Player();
-        
+
+
         /// <summary>
         /// 생성 함수
         /// </summary>
