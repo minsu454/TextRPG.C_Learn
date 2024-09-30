@@ -7,9 +7,21 @@ namespace TextRPG
         public override void Load()
         {
             
-            GameManager.Scene.CloseScene(); // 일단 이거 주석처리 해놔라
+            Console.Clear();
+            Console.WriteLine("플레이어 상태창");
+            Console.WriteLine($"이름: {GameManager.player.playerName}");
+            Console.WriteLine($"직업: {GameManager.player.playerJob}");
+            Console.WriteLine($"공격력: {GameManager.player.playerAttack}");
+            Console.WriteLine($"방어력: {GameManager.player.playerDefense}");
+            Console.WriteLine($"체력: {GameManager.player.playerCurHealth}/{GameManager.player.playerMaxHealth}");
+            Console.WriteLine($"소지금: {GameManager.player.playerGold}G");
+            Console.WriteLine("=========================");
+
+            Console.WriteLine("아무키나 누르면 로비로 이동합니다.");
+            Console.ReadKey(true);
+            GameManager.Scene.CloseScene(); 
         }
-        //여기에 플레이어상태창 보기 스크립트 작성해보기
+        
 
         #region PrintFormat
 

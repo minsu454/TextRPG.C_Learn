@@ -9,15 +9,17 @@ namespace TextRPG
         private string playerName;
         private bool jobSelected = false;
 
+
+
         public override void Load()
         {
-
+            Console.WriteLine((int)GameEventType.None);
             if (string.IsNullOrEmpty(playerName)) // 직업 선택에서 뒤로가기 누를 시 이름 입력하는 창으로 이동하기에 아예 한 번 이름 입력하면 이동 안하게 고정
             {
                 Console.WriteLine("반갑습니다. Player");
                 Console.Write("이름을 입력해주세요: ");
                 playerName = Console.ReadLine();
-               
+
                 ChooseJob();
                 GameManager.Scene.OpenScene(SceneType.Lobby);
             }
@@ -26,41 +28,34 @@ namespace TextRPG
 
         public void ChooseJob()
         {
-            bool validSelection = false;
 
-            while (!validSelection)
+
+            Console.WriteLine($"{playerName}님, 어떤 직업을 선택하시겠습니까?");
+            Console.WriteLine("1. 전사\n2. 궁수\n3. 마법사\n4. 도적");
+            Console.WriteLine("숫자 1~4 중 하나를 입력하여 직업을 선택하세요.");
+
+            int keyInfo = Input.InputKey(4);
+
+            switch (keyInfo)
             {
-                Console.WriteLine($"{playerName}님, 어떤 직업을 선택하시겠습니까?");
-                Console.WriteLine("1. 전사\n2. 궁수\n3. 마법사\n4. 도적");
-                Console.WriteLine("숫자 1~4 중 하나를 입력하여 직업을 선택하세요.");
-
-                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-
-                switch (keyInfo.Key)
-                {
-                    case ConsoleKey.D1:
-                        ShowJobDetails("전사", 10, 10, 80, 1500);
-                        break;
-                    case ConsoleKey.D2:
-                        ShowJobDetails("궁수", 12, 8, 90, 1500);
-                        break;
-                    case ConsoleKey.D3:
-                        ShowJobDetails("마법사", 15, 5, 60, 1500);
-                        break;
-                    case ConsoleKey.D4:
-                        ShowJobDetails("도적", 13, 7, 70, 1500);
-                        break;
-                    default:
-                        Console.WriteLine("잘못된 선택입니다. 다시 입력해주세요.");
-                        break;
-                }
-
-                if (jobSelected)
-                {
-                    validSelection = true;
-                    GameManager.Scene.OpenScene(SceneType.Lobby);  // 이게 앞에 가있으니까 자꾸 다시 첫 화면으로 이동해서 뒤로 빼놓음. 
-                }
+                case 1:
+                    ShowJobDetails("전사", 10, 10, 80, 1500);
+                    break;
+                case 2:
+                    ShowJobDetails("궁수", 12, 8, 90, 1500);
+                    break;
+                case 3:
+                    ShowJobDetails("마법사", 15, 5, 60, 1500);
+                    break;
+                case 4:
+                    ShowJobDetails("도적", 13, 7, 70, 1500);
+                    break;
+                default:
+                    Console.WriteLine("잘못된 선택입니다. 다시 입력해주세요.");
+                    break;
             }
+
+
         }
 
         public void ShowJobDetails(string job, int attack, int defense, int health, int gold)
