@@ -1,40 +1,39 @@
-﻿namespace TextRPG
+﻿using System.Xml.Linq;
+
+namespace TextRPG
 {
 
     public class Player
     {
-        public string playerName;
-        public string playerJob;
+        public string playerName { get; set; }
+        public string playerJob { get; set; }
 
-        public int playerAttack;
-        public int playerDefense;
-        public int playerCurHealth;
-        public int playerMaxHealth;
+        public int playerAttack { get; set; }
+        public int playerDefense { get; set; }
+        public int playerCurHealth { get; set; }
+        public int playerMaxHealth { get; set; }
 
-        public int playerGold;
+        public int playerGold { get; set; }
 
+        public Player(string name, string job, int attack, int defense, int curHealth, int maxHealth, int gold)
+        {
+            playerName = name;
+            playerJob = job;
+            playerAttack = attack;
+            playerDefense = defense;
+            playerCurHealth = curHealth;
+            playerMaxHealth = maxHealth;
+            playerGold = gold;
+        }
         public Player()
         {
-            this.playerName = "안녕";
-            this.playerJob = "전사";
-            this.playerAttack = 10;
-            this.playerDefense = 1;
-            this.playerCurHealth = 50;
-            this.playerMaxHealth = 100;
-            this.playerGold = 3000;
+
         }
 
-        public Player(string playerName, string playerJob, int playerAttack, int playerDefense, int playerHealth, int playerGold)
+        public void ShowJobDetails() 
         {
-            this.playerName = playerName;
-            this.playerJob = playerJob;
-            this.playerAttack = playerAttack;
-            this.playerDefense = playerDefense;
-            this.playerCurHealth = playerHealth;
-            this.playerMaxHealth = playerHealth;
-            this.playerGold = playerGold;
+            Console.WriteLine($"\n이름: {playerName}\n직업: {playerJob}\n공격력: {playerAttack}\n방어력: {playerDefense}\n체력: {playerCurHealth}/{playerMaxHealth}\n소지금: {playerGold}G");
         }
     }
-
-  
 }
+

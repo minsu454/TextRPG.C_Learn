@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using System.Xml.Linq;
 
 namespace TextRPG
@@ -86,8 +86,7 @@ namespace TextRPG
             }
         }
 
-        // 직업의 성능을 보여주고 선택을 관리하는 메서드
-        public void ShowJobDetails(string job, int attack, int defense, int health, int gold)//각 직업 스테이터스 보여주기
+        public void ShowJobDetails(string job, int attack, int defense, int health, int gold)
         {
             Console.WriteLine($"\n직업: {job}\n공격력: {attack}\n방어력: {defense}\n체력: {health}\n소지금: {gold}G\n");
             Console.WriteLine("1. 선택하기\n2. 뒤로가기");
@@ -102,11 +101,13 @@ namespace TextRPG
             else if (actionKeyInfo.Key == ConsoleKey.D2)
             {
                 Console.WriteLine("직업 선택 화면으로 돌아갑니다.");
-                // "뒤로가기"를 선택하면 다시 직업 선택 화면으로 돌아감
+                // 뒤로가기 선택 시 직업 선택 화면으로 돌아감
+                ChooseJob();
             }
             else
             {
                 Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요.");
+                ShowJobDetails(job, attack, defense, health, gold);
             }
 
             Thread.Sleep(500);

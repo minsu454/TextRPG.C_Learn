@@ -13,12 +13,11 @@ namespace TextRPG
 
             //GameManager.Quest.Check(QuestNameType.Test1, new Test1QuestArgs());
 
-            GameManager.Scene.CloseScene();
-
+            //GameManager.Scene.CloseScene();
+            
         }
-
-        #region PrintFormat
         
-        #endregion
+      
     }
+
 }
