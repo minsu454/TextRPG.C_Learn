@@ -14,6 +14,7 @@ namespace TextRPG
         public readonly static SaveManager Save = new SaveManager();            //저장 매니저
         public readonly static QuestManager Quest = new QuestManager();         //퀘스트 매니저
         public readonly static EventManager Event = new EventManager();         //이벤트 매니저
+        public readonly static StageInfo Stage = new StageInfo();               //던전
 
         public static Player player = new Player();
        
