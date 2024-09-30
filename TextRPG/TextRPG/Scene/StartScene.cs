@@ -6,29 +6,27 @@ namespace TextRPG
     public class StartScene : BaseScene, IMainScene
     {
         private int shiftCount = 0;
-        private string? playerName;
         private bool jobSelected = false; // 직업이 선택되었는지 여부 확인 안되었으면 stay
 
-        public override void Load() 
+        public override void Load()
         {
-            {
-                Console.WriteLine("반갑습니다. Player");
-                Console.Write("이름을 입력해주세요: ");
-                playerName = Console.ReadLine()!;
+            Console.WriteLine("반갑습니다. Player");
+            Console.Write("이름을 입력해주세요: ");
+            string playerName = Console.ReadLine()!;
 
-                Console.WriteLine($"{playerName}님, 어떤 직업을 선택하시겠습니까?");
-                ChooseJob();
-                GameManager.Scene.OpenScene(SceneType.Lobby);
-            }
+            ChooseJob(playerName);
+
+            GameManager.Scene.OpenScene(SceneType.Lobby);
         }
 
         // 직업 선택 메서드
-        public void ChooseJob()
+        public void ChooseJob(string playerName)
         {
             while (!jobSelected)//검사를 하는 동안
             {
                 Console.Clear();
 
+                Console.WriteLine($"{playerName}님, 어떤 직업을 선택하시겠습니까?");
                 Console.WriteLine("1. 전사\n2. 궁수\n3. 마법사\n4. 도적");
                 Console.WriteLine("숫자 1~4 중 하나를 입력하여 직업을 선택하세요.");
 
@@ -58,15 +56,12 @@ namespace TextRPG
                         break;
                 }
             }
-
-            
-           
         }
 
         // 직업의 성능을 보여주고 선택을 관리하는 메서드
         public void ShowJobDetails(string job, int attack, int defense, int health, int gold)//각 직업 스테이터스 보여주기
         {
-            Console.WriteLine($"\n직업: {job}\n공격력: {attack}\n방어력: {defense}\n체력: {health}\n소지금: {gold}G");
+            Console.WriteLine($"\n직업: {job}\n공격력: {attack}\n방어력: {defense}\n체력: {health}\n소지금: {gold}G\n");
             Console.WriteLine("1. 선택하기\n2. 뒤로가기");
 
             ConsoleKeyInfo actionKeyInfo = Console.ReadKey(true);
@@ -85,6 +80,8 @@ namespace TextRPG
             {
                 Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요.");
             }
+
+            Thread.Sleep(500);
         }
     }
 }
