@@ -67,14 +67,11 @@ namespace TextRPG
 
 -보상-
 {quest.pay}
-
-1. 수락
-2. 거절
 ");
 
             Print.PrintScreen(sb);
 
-            int input = Input.InputKey(2);
+            int input = Input.Selection(1, "수락", "거절");
 
             Console.Clear();
 
