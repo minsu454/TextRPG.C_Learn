@@ -15,8 +15,10 @@
             return MobReturn(mobcount);
         }
 
-        public void Init()
+        public void Spawn()
         {
+            monsters.Clear();
+
             int[] arr = MobCount();
 
             Random random = new Random();

@@ -14,7 +14,13 @@ namespace TextRPG
         {
             Level = level;
             Name = name;
+            
             (int Health, int Attack, int Defence) info = GetStatsByLevel(level);
+
+            Health = info.Health;
+            Attack = info.Attack;
+            Defence = info.Defence;
+
         }
         int[] level = { 1, 2, 3, 4 };
         int[] health = { 60, 80, 110, 160 };
