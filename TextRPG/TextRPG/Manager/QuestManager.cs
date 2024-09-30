@@ -2,7 +2,8 @@
 {
     public class QuestManager
     {
-        public Dictionary<QuestType, BaseQuest> questDic {  get; private set; } = new Dictionary<QuestType, BaseQuest>();
+        private readonly Dictionary<QuestType, BaseQuest> questDic = new Dictionary<QuestType, BaseQuest>();
+        public Dictionary<QuestType, BaseQuest> QuestDic {  get { return questDic; } }
 
         public void Init()
         {

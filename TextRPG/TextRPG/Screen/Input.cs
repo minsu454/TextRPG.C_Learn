@@ -31,7 +31,7 @@ namespace TextRPG
         /// </summary>
         public static int InputKey(int count, int startIdx = 1)
         {
-            Print.PrintScreen(inputFormats);
+            Console.Write(inputFormats);
 
             int input = 0;
 
@@ -41,7 +41,7 @@ namespace TextRPG
 
                 if (input >= count + startIdx || input < startIdx)
                 {
-                    Print.PrintScreen(inputErrorFormats);
+                    Console.Write(inputErrorFormats);
                 }
                 else
                 {

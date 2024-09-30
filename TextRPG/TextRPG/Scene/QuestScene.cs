@@ -37,7 +37,7 @@ namespace TextRPG
 
             for (int i = 1; i < enumLength; i++)
             {
-                sb.AppendLine($"{i}. {GameManager.Quest.questDic[(QuestType)i].name}");
+                sb.AppendLine($"{i}. {GameManager.Quest.QuestDic[(QuestType)i].name}");
             }
             sb.AppendLine();
 
@@ -55,7 +55,7 @@ namespace TextRPG
         /// </summary>
         private int QuestExplanationPrintAndInput(QuestType type)
         {
-            BaseQuest quest = GameManager.Quest.questDic[type];
+            BaseQuest quest = GameManager.Quest.QuestDic[type];
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine(
