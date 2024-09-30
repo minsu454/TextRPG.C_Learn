@@ -12,8 +12,6 @@ namespace TextRPG
         {
             LoadPlayer();
 
-            
-
             GameManager.Scene.OpenScene(SceneType.Lobby);
         }
 
