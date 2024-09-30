@@ -6,7 +6,7 @@ namespace TextRPG
     public class StartScene : BaseScene, IMainScene
     {
         private int shiftCount = 0;
-        private string playerName;
+        private string? playerName;
         private bool jobSelected = false; // 직업이 선택되었는지 여부 확인 안되었으면 stay
 
         public override void Load() 
@@ -14,7 +14,7 @@ namespace TextRPG
             {
                 Console.WriteLine("반갑습니다. Player");
                 Console.Write("이름을 입력해주세요: ");
-                playerName = Console.ReadLine();
+                playerName = Console.ReadLine()!;
 
                 Console.WriteLine($"{playerName}님, 어떤 직업을 선택하시겠습니까?");
                 ChooseJob();
@@ -25,10 +25,10 @@ namespace TextRPG
         // 직업 선택 메서드
         public void ChooseJob()
         {
-            bool validSelection = false; // 올바른 직업 선택 일때만 안되면 다시
-
-            while (!validSelection)//검사를 하는 동안
+            while (!jobSelected)//검사를 하는 동안
             {
+                Console.Clear();
+
                 Console.WriteLine("1. 전사\n2. 궁수\n3. 마법사\n4. 도적");
                 Console.WriteLine("숫자 1~4 중 하나를 입력하여 직업을 선택하세요.");
 
@@ -38,26 +38,28 @@ namespace TextRPG
                 switch (keyInfo.Key)
                 {
                     case ConsoleKey.D1:
-                        validSelection = true;
                         ShowJobDetails("전사", 10, 10, 80, 1500);
+                        GameManager.player = new Player(playerName!, "전사", 10, 10, 80, 1500);
                         break;
                     case ConsoleKey.D2:
-                        validSelection = true;
                         ShowJobDetails("궁수", 12, 8, 90, 1500);
+                        GameManager.player = new Player(playerName!, "궁수", 12, 8, 90, 1500);
                         break;
                     case ConsoleKey.D3:
-                        validSelection = true;
                         ShowJobDetails("마법사", 15, 5, 60, 1500);
+                        GameManager.player = new Player(playerName!, "전사", 15, 5, 60, 1500);
                         break;
                     case ConsoleKey.D4:
-                        validSelection = true;
                         ShowJobDetails("도적", 13, 7, 70, 1500);
+                        GameManager.player = new Player(playerName!, "전사", 13, 7, 70, 1500);
                         break;
                     default:
                         Console.WriteLine("잘못된 선택입니다. 다시 입력해주세요.");
                         break;
                 }
             }
+
+            
            
         }
 
