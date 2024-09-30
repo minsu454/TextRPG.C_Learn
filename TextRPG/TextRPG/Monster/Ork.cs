@@ -21,7 +21,7 @@ namespace TextRPG
         int[] attack = { 15, 25, 35, 45 };
         int[] defence = { 10, 15, 20, 25 };
 
-        private (int Health, int Attack, int Defence) GetStatsByLevel(int level)
+        private static (int Health, int Attack, int Defence) GetStatsByLevel(int level)
         {
             switch (level)
             {
