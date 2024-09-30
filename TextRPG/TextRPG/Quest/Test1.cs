@@ -2,13 +2,13 @@
 {
     public class Test1 : BaseQuest
     {
+        public override string Name => "무기구매";
+        public override string Comment => "하나만 사보자";
+        public override string Reward => "1000 G";
+
         public override void Init()
         {
-            EventType = GameEventType.BuyItem;
-
-            name = "무기구매";
-            comment = "하나만 사보자";
-            pay = "1000 G";
+            GameManager.Event.Subscribe(GameEventType.BuyItem, OnBuyItem);
         }
 
         public override void Release()
@@ -16,18 +16,13 @@
             GameManager.Event.Unsubscribe(GameEventType.BuyItem, OnBuyItem);
         }
 
-        public override EventListener? listener()
-        {
-            return OnBuyItem;
-        }
-
         private void OnBuyItem(object args)
         {
-            BuyItemEventArgs? buyItem = args as BuyItemEventArgs;
+            BuyItemEventArgs buyItem = args as BuyItemEventArgs;
 
             if (buyItem!.Name == "무기")
             {
-                state = QuestStateType.Completed;
+                State = QuestStateType.Completed;
             }
         }
     }

@@ -37,7 +37,7 @@ namespace TextRPG
 
             for (int i = 1; i < enumLength; i++)
             {
-                sb.AppendLine($"{i}. {GameManager.Quest.QuestDic[(QuestType)i].name}");
+                sb.AppendLine($"{i}. {GameManager.Quest.QuestDic[(QuestType)i].Name}");
             }
             sb.AppendLine();
 
@@ -61,12 +61,12 @@ namespace TextRPG
             sb.AppendLine(
 @$"Quest!! 
 
-{quest.name}
+{quest.Name}
 
-{quest.comment}
+{quest.Comment}
 
 -보상-
-{quest.pay}
+{quest.Reward}
 ");
 
             Print.PrintScreen(sb);

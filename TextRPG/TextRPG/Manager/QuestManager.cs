@@ -5,48 +5,45 @@
         private readonly Dictionary<QuestType, BaseQuest> questDic = new Dictionary<QuestType, BaseQuest>();
         public Dictionary<QuestType, BaseQuest> QuestDic {  get { return questDic; } }
 
-        public void Init()
-        {
-            foreach (QuestType type in Enum.GetValues(typeof(QuestType)))
-            {
-                BaseQuest? quest = QuestFactory.CreateQuest(type);
-
-                if (quest == null)
-                    continue;
-                
-                quest.Init();
-                questDic.Add(type, quest);
-            }
-        }
+        List<QuestType> questList = new List<QuestType>();
 
         /// <summary>
         /// 퀘스트 이벤트 구독해주는 함수
         /// </summary>
         public void AddQuest(QuestType questType)
         {
-            BaseQuest quest = questDic[questType];
-
-            if (quest.state == QuestStateType.Completed)
+            if(questDic.ContainsKey(questType))
             {
-                return;
+                return;   
             }
 
-            GameManager.Event.Subscribe(quest.EventType, quest.listener()!);
+            BaseQuest quest = QuestFactory.CreateQuest(questType);
+            quest.Init();
+            quest.stateChanged += Quest_stateChanged;
+            questDic.Add(questType, quest);
+        }
+
+        /// <summary>
+        /// QuestStateType타입이 변할 때 호출해주는 함수
+        /// </summary>
+        private void Quest_stateChanged(BaseQuest quest, QuestStateType state)
+        {
+            if (state == QuestStateType.Completed)
+            {
+                questList.Add(quest.Type);
+            }
         }
 
         /// <summary>
         /// 퀘스트 이벤트 지워주는 함수
         /// </summary>
-        public void RemoveQuest(QuestType questType)
+        private void RemoveQuest(QuestType questType)
         {
-            BaseQuest quest = questDic[questType];
-
-            if (quest.state != QuestStateType.Completed)
+            if (questDic.Remove(questType, out var quest))
             {
-                return;
+                quest.stateChanged -= Quest_stateChanged;
+                quest.Release();
             }
-
-            GameManager.Event.Unsubscribe(quest.EventType, quest.listener()!);
         }
     }
 }

@@ -2,18 +2,13 @@
 {
     public class Test2 : BaseQuest
     {
+        public override string Name => "고블린";
+        public override string Comment => "하나만 잡아보자";
+        public override string Reward => "10000 G";
+
         public override void Init()
         {
-            EventType = GameEventType.KillEnemy;
-
-            name = "고블린";
-            comment = "하나만 잡아보자";
-            pay = "10000 G";
-        }
-
-        public override EventListener? listener()
-        {
-            return OnKillEnemy;
+            GameManager.Event.Subscribe(GameEventType.KillEnemy, OnKillEnemy);
         }
 
         public override void Release()
@@ -23,11 +18,11 @@
 
         private void OnKillEnemy(object args)
         {
-            BuyItemEventArgs? buyItem = args as BuyItemEventArgs;
+            BuyItemEventArgs buyItem = args as BuyItemEventArgs;
 
             if (buyItem!.Name == "무기")
             {
-                state = QuestStateType.Completed;
+                State = QuestStateType.Completed;
             }
         }
     }

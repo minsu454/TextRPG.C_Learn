@@ -2,17 +2,31 @@
 {
     public abstract class BaseQuest
     {
-        public QuestStateType state;
-        public GameEventType EventType { get; protected set; }
+        private QuestStateType _state;
+        public QuestStateType State
+        {
+            get { return _state; }
+            set
+            {
+                if (_state == value)
+                {
+                    return;
+                }
+                _state = value;
+                stateChanged.Invoke(this, value);
+            }
+        }
+        public QuestType Type { get; init; }
 
-        public string? name;
-        public string? comment;
-        public string? pay;
+        public virtual string Name { get; }
+        public virtual string Comment { get; }
+        public virtual string Reward { get; }
 
         public List<int> payList = new List<int>();
 
         public abstract void Init();
         public abstract void Release();
-        public abstract EventListener? listener();
+
+        public event Action<BaseQuest, QuestStateType> stateChanged;
     }
 }
