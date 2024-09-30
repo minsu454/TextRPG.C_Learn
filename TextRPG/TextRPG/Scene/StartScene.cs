@@ -10,13 +10,38 @@ namespace TextRPG
 
         public override void Load()
         {
+            LoadPlayer();
+
+            GameManager.Scene.OpenScene(SceneType.Lobby);
+        }
+
+        public void LoadPlayer()
+        {
+            if (GameManager.Save.CanLoadFile())
+            {
+                Console.WriteLine("전에 플레이하던 데이터가 있습니다.");
+                Console.WriteLine("불러오시겠습니까?");
+
+                int input = Input.Selection(1, "예.", "아니오.");
+
+                if (input == 1)
+                {
+                    GameManager.player = GameManager.Save.Load<Player>();
+                    return;
+                }
+            }
+
+            Console.Clear();
+            CreatePlayer();
+        }
+
+        public void CreatePlayer()
+        {
             Console.WriteLine("반갑습니다. Player");
             Console.Write("이름을 입력해주세요: ");
             string playerName = Console.ReadLine()!;
 
             ChooseJob(playerName);
-
-            GameManager.Scene.OpenScene(SceneType.Lobby);
         }
 
         // 직업 선택 메서드
@@ -53,6 +78,7 @@ namespace TextRPG
                         break;
                     default:
                         Console.WriteLine("잘못된 선택입니다. 다시 입력해주세요.");
+                        Thread.Sleep(500);
                         break;
                 }
             }
@@ -83,6 +109,8 @@ namespace TextRPG
 
             Thread.Sleep(500);
         }
+
+
     }
 }
 

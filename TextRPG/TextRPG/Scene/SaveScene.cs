@@ -4,7 +4,7 @@
     {
         public override void Load()
         {
-            Print.PrintScreen("지금까지의 내용을 저장하시겠습니까?\n");
+            Console.WriteLine("지금까지의 내용을 저장하시겠습니까?\n");
 
             int input = Input.Selection(1, "예.", "아니오.");
 
