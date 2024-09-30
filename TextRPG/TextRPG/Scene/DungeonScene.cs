@@ -30,7 +30,6 @@ namespace TextRPG
         }
 
 
-
         public void InDungeon() // 던전 함수
         {
             Console.Clear();
