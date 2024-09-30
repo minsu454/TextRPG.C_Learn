@@ -6,28 +6,20 @@
 
         public override void Init()
         {
-            shiftCount = 1;
+            shiftCount = 2;
         }
 
         public override void Load()
         {
             Print.PrintScreen(lobbyFormat);
-            int input = Input.InputKey(7, true);
+            int input = Input.Selection(1, "상태 보기", "인벤토리", "상점", "퀘스트", "던전입장", "휴식하기", "저장하기");
 
-            GameManager.Scene.OpenScene((SceneType)(1 << input + shiftCount));
+            GameManager.Scene.OpenScene((SceneType)(input + shiftCount));
         }
 
         #region PrintFormat
         private string lobbyFormat =
 @$"이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.
-
-1. 상태 보기
-2. 인벤토리
-3. 상점
-4. 퀘스트
-5. 던전입장
-6. 휴식하기
-7. 저장하기
 
 ";
         #endregion

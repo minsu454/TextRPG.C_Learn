@@ -1,4 +1,6 @@
-﻿namespace TextRPG
+﻿using System.Reflection;
+
+namespace TextRPG
 {
     public static class Input
     {
@@ -13,10 +15,21 @@
 >> ";
         #endregion
 
+        public static int Selection(int startIdx, params string[] choiceArr)
+        {
+            for (int i = 0; i < choiceArr.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}. {choiceArr[i]}");
+            }
+            Console.WriteLine();
+
+            return InputKey(choiceArr.Length, startIdx);
+        }
+
         /// <summary>
         /// 입력된 범위 내에 값을 반환해주는 함수
         /// </summary>
-        public static int InputKey(int count, bool useZero = false)
+        public static int InputKey(int count, int startIdx = 1)
         {
             Print.PrintScreen(inputFormats);
 
@@ -24,16 +37,25 @@
 
             while (true)
             {
-                input = (int)Console.ReadKey().Key;
-                input -= 48;
+                input = ReadNumber();
 
-                if (input <= (useZero ? count - 1 : count) && input >= (useZero ? 0 : 1))
+                if (input >= count + startIdx || input < startIdx)
+                {
+                    Print.PrintScreen(inputErrorFormats);
+                }
+                else
                 {
                     break;
                 }
-
-                Print.PrintScreen(inputErrorFormats);
             }
+
+            return input;
+        }
+
+        private static int ReadNumber()
+        {
+            int input = (int)Console.ReadKey().Key;
+            input -= (int)ConsoleKey.D0;
 
             return input;
         }
