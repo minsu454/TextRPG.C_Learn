@@ -100,7 +100,6 @@ namespace TextRPG
             {
                 Console.WriteLine("직업 선택 화면으로 돌아갑니다.");
                 // 뒤로가기 선택 시 직업 선택 화면으로 돌아감
-                ChooseJob();
             }
             else
             {

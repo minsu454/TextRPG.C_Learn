@@ -18,14 +18,14 @@ namespace TextRPG
 
         public int playerGold { get; set; }
 
-        public Player(string name, string job, int attack, int defense, int curHealth, int maxHealth, int gold)
+        public Player(string name, string job, int attack, int defense, int maxHealth, int gold)
         {
             level = 1;
             playerName = name;
             playerJob = job;
             playerAttack = attack;
             playerDefense = defense;
-            playerCurHealth = curHealth;
+            playerCurHealth = maxHealth;
             playerMaxHealth = maxHealth;
             playerGold = gold;
         }
