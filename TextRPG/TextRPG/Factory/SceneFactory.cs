@@ -34,6 +34,9 @@
                 case SceneType.Quest:
                     scene = new QuestScene();
                     break;
+                case SceneType.Save:
+                    scene = new SaveScene();
+                    break;
                 default:
                     break;
             }
