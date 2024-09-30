@@ -4,7 +4,7 @@ namespace TextRPG
 {
     public class SaveManager
     {
-        private string path = "../../../../Save/Monster.json";
+        private string path = "../../../../Save/Player.json";
 
         /// <summary>
         /// save해주는 함수
