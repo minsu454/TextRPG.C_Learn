@@ -70,11 +70,11 @@ namespace TextRPG
                         break;
                     case ConsoleKey.D3:
                         ShowJobDetails("마법사", 15, 5, 60, 1500);
-                        GameManager.player = new Player(playerName!, "전사", 15, 5, 60, 1500);
+                        GameManager.player = new Player(playerName!, "마법사", 15, 5, 60, 1500);
                         break;
                     case ConsoleKey.D4:
                         ShowJobDetails("도적", 13, 7, 70, 1500);
-                        GameManager.player = new Player(playerName!, "전사", 13, 7, 70, 1500);
+                        GameManager.player = new Player(playerName!, "도적", 13, 7, 70, 1500);
                         break;
                     default:
                         Console.WriteLine("잘못된 선택입니다. 다시 입력해주세요.");
