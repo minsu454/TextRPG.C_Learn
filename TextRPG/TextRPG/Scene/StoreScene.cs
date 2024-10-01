@@ -22,7 +22,7 @@ namespace TextRPG
             Console.WriteLine("상점에 오신 것을 환영합니다.");
 
             ChooseItem();
-            ChooseChoice();
+            //ChooseChoice();
 
             //GameManager.Event.Dispatch(GameEventType.BuyItem, new BuyItemEventArgs()
             //{
@@ -36,28 +36,52 @@ namespace TextRPG
 
         public void ChooseItem()
         {
-            int input = Input.InputKey(4);
+            int input = Input.InputKey(4); Input.Selection(1, "예", "아니오");
+            
+                Console.WriteLine("강철검\n나무스태프\n목궁\n수리검");
 
-            switch (input) 
             {
-                case 1:
-                    ShowI
-            }
-
-
-        }
-
-        public void ChooseChoice()
-            {
-            int input = Input.Selection(1, "예", "아니오");
-            {
+                Console.WriteLine("구매하시겠습니까?");
                 if (input == 1)
                 {
+                    Console.WriteLine("구매가 완료되었습니다.");
                     GameManager.Item.ItemEquip = true;
                 }
-            }
-            
+            } 
+
+            //switch (input) 
+            //{
+            //    case 1:
+            //        Console.WriteLine();
+            //        break;
+            //    case 2:
+            //        Console.WriteLine();
+            //        break;
+            //    case 3:
+            //        Console.WriteLine();
+            //        break;
+            //    case 4:
+            //        Console.WriteLine();
+            //        break;
+            //    default:
+            //        Console.WriteLine("잘못된 입력입니다.");
+            //        break;
+            //}
         }
-        
+
+        //public void ChooseChoice()
+        //    {
+        //    int input = Input.Selection(1, "예", "아니오");
+        //    {
+        //        Console.WriteLine("구매하시겠습니까?");
+
+        //        if (input == 1)
+        //        {
+        //            Console.WriteLine("구매가 완료되었습니다.");
+        //            GameManager.Item.ItemEquip = true;
+        //        }
+        //    }
+            
+        //}        
     }
 }
