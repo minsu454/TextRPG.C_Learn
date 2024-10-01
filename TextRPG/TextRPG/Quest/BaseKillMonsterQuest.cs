@@ -18,7 +18,7 @@
 
         private void OnKillEnemy(object args)
         {
-            BuyItemEventArgs buyItem = args as BuyItemEventArgs;
+            KillMonsterEventArgs buyItem = args as KillMonsterEventArgs;
 
             if (MonsterName != buyItem.Name)
             {

@@ -2,14 +2,15 @@
 {
     public class DungeonScene : BaseScene, IMainScene
     {
-        private int shiftCount;
-
         List<Monster> monsters = GameManager.Stage.monsters;
         private int MonsterIndex = 0;
+        private bool isClear = false;
 
         Player player = GameManager.player;
         public override void Load()
         {
+            isClear = false;
+
             Console.WriteLine("던전에 오신 여러분 환영합니다.");
             Console.WriteLine("이제 전투를 시작할 수 있습니다.\n");
             Console.WriteLine("1. 전투 시작");
@@ -25,8 +26,12 @@
                     break;
             }
 
+            if (isClear)
+                DungeonClear();
+
             GameManager.Scene.OpenScene(SceneType.Lobby);
         }
+
         public void InDungeon() // 던전 함수
         {
             Player player = GameManager.player;
@@ -35,7 +40,7 @@
 
             Console.Clear();
 
-            while (true)
+            while (!isClear)
             {
                 if (player.playerCurHealth <= 0)
                 {
@@ -73,14 +78,10 @@
                 // 공격력 10% +- 오차범위 랜덤
 
                 PlayerAttack(atkdamage, input - 1);
+                Thread.Sleep(500);
 
-                if (monsters.All(alldead => alldead.IsDead)) // 모든 몹 죽었을때 로비로 돌아가기
-                {
-                    Console.WriteLine("\n1. 나가기\n");
-
-                    input = Input.InputKey(1, 1);
-                    break;
-                }
+                MonsterAttack();
+                Thread.Sleep(500);
 
                 if (player.playerCurHealth <= 0) // 플레이어가 죽었는지 확인
                 {
@@ -113,31 +114,42 @@
 
             Print.PrintScreenAndSleep($"{player.playerName} 의 공격!\n");
 
-            monsters[index].Health -= atkdamage; // 테스트 시 공격력 수정하는 곳
+            monsters[index].TakeDamage(atkdamage);  // 테스트 시 공격력 수정하는 곳
 
             Console.WriteLine($"Lv.{monsters[index].Level} {monsters[index].Name} 을(를) 맞췄습니다. [데미지 : {atkdamage}]");
 
             if (monsters[index].Health <= 0)
             {
                 Print.ColorPrintScreen(ConsoleColor.DarkGray, $"Hp {mobCurHealth} -> Dead\n");
+                GameManager.Event.Dispatch(GameEventType.KillMonster, new KillMonsterEventArgs()
+                {
+                    Name = $"{monsters[index].Name}",
+                    Count = 1
+                });
             }
             else
             {
                 Console.WriteLine($"Hp {mobCurHealth} -> {monsters[index].Health}\n");
             }
-
-            Thread.Sleep(500);
-            MonsterAttack();
         }
 
         public void MonsterAttack() // 몹 공격 함수
         {
+            if (monsters.All(alldead => alldead.IsDead))
+            {
+                isClear = true;
+                return;
+            }
+
             for (int i = 0; i < monsters.Count; i++) // 살아있는 몬스터 찾아서 공격 시도할때까지 반복
             {
                 if (monsters[MonsterIndex].IsDead) // 현재 몬스터가 살아있다면 공격 진행
                 {
                     MonsterIndex %= monsters.Count;
                     MonsterIndex++;
+                }
+                else
+                {
                     break;
                 }
             }
@@ -164,17 +176,13 @@
             }
 
             Console.WriteLine($"Hp {playerCurHealth} -> {player.playerCurHealth}\n");
-
-            Thread.Sleep(500);
-            
             MonsterIndex = (++MonsterIndex) % monsters.Count;
+        }
 
-            if (monsters.All(alldead => alldead.IsDead))
-            {
-                Console.Clear();
-                Print.ColorPrintScreen(ConsoleColor.Green, "Win!\n");
-            }
-
+        public void DungeonClear()
+        {
+            Console.Clear();
+            Print.ColorPrintScreen(ConsoleColor.Green, "Win!\n");
         }
     }
 }

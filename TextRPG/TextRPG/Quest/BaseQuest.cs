@@ -30,6 +30,13 @@
         public abstract void Release();
         public abstract void GiveReward();
 
+        public void Reset()
+        {
+            state = QuestStateType.None;
+            CurCount = 0;
+            Release();
+        }
+
         public event Action<BaseQuest, QuestStateType> stateChanged;
     }
 }

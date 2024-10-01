@@ -94,7 +94,9 @@ namespace TextRPG
                     }
                 case QuestStateType.Doing:
                     {
-                        input = Input.Selection(1, "돌아가기");
+                        input = Input.Selection(1, "퀘스트 취소하기", "돌아가기");
+                        if (input == 1)
+                            quest.Reset();
                     }
                     break;
                 case QuestStateType.Completed:

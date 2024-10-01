@@ -66,8 +66,7 @@
         {
             if (questDic.ContainsKey(questType))
             {
-                questDic[questType].State = QuestStateType.None;
-                questDic[questType].Release();
+                questDic[questType].Reset();
             }
         }
     }
