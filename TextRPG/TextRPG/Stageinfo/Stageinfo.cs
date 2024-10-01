@@ -31,24 +31,13 @@
 
                     monsters.Add(new Ork(moblevel, "Ork"));
                 }
-                else if (arr[i] == 1)
+                else
                 {   
                     int moblevel = random.Next(1, 5); // 레벨 1~4 랜덤
 
                     monsters.Add(new Goblin(moblevel, "Goblin"));
                 }
-                 else if (arr[i] == 2)
-                {
-                    int moblevel = random.Next(1, 5); // 레벨 1~4 랜덤
 
-                    monsters.Add(new RandomBox(moblevel, "RandomBox"));
-                }
-                  else
-                {
-                    int moblevel = random.Next(1, 5); // 레벨 1~4 랜덤
-
-                    monsters.Add(new Cobra(moblevel, "Cobra"));
-                }
 
             }
         }
@@ -62,7 +51,7 @@
             {
                 Random random = new Random();
 
-                int mobtype = random.Next(0, 4); // 등장하는 몹의 종류
+                int mobtype = random.Next(0, 2); // 등장하는 몹의 종류
 
                 mobArray[i] = mobtype;
             }

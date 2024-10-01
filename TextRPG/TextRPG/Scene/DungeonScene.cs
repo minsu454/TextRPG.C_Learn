@@ -6,13 +6,12 @@
         private int MonsterIndex = 0;
         private bool isClear = false;
 
-        Player player = GameManager.player;
         public override void Load()
         {
             isClear = false;
 
             Console.WriteLine("던전에 오신 여러분 환영합니다.");
-            Console.WriteLine("이제 전투를 시작할 수 있습니다.\n");
+            Console.WriteLine($"이제 전투를 시작할 수 있습니다. [현재 : {GameManager.player.StageNum}층]\n");
             Console.WriteLine("1. 전투 시작");
             Console.WriteLine("2. 재정비\n");
 
@@ -77,6 +76,8 @@
 
                 // 공격력 10% +- 오차범위 랜덤
 
+                Console.Clear();
+
                 PlayerAttack(atkdamage, input - 1);
                 Thread.Sleep(500);
 
@@ -103,20 +104,16 @@
 
             if (monsters[index].IsDead)
             {
-                Console.Clear();
                 Print.ColorPrintScreen(ConsoleColor.Red, "올바른 대상을 지정해주세요.\n");
                 return;
             }
 
-            Console.Clear();
-
             int mobCurHealth = monsters[index].Health;
 
             Print.PrintScreenAndSleep($"{player.playerName} 의 공격!\n");
+            Console.WriteLine($"Lv.{monsters[index].Level} {monsters[index].Name} 을(를) 맞췄습니다. [데미지 : {atkdamage}]");
 
             monsters[index].TakeDamage(atkdamage);  // 테스트 시 공격력 수정하는 곳
-
-            Console.WriteLine($"Lv.{monsters[index].Level} {monsters[index].Name} 을(를) 맞췄습니다. [데미지 : {atkdamage}]");
 
             if (monsters[index].Health <= 0)
             {
@@ -145,8 +142,8 @@
             {
                 if (monsters[MonsterIndex].IsDead) // 현재 몬스터가 살아있다면 공격 진행
                 {
-                    MonsterIndex %= monsters.Count;
                     MonsterIndex++;
+                    MonsterIndex %= monsters.Count;
                 }
                 else
                 {
@@ -183,6 +180,9 @@
         {
             Console.Clear();
             Print.ColorPrintScreen(ConsoleColor.Green, "Win!\n");
+            GameManager.player.StageNum++;
+
+            Thread.Sleep(500);
         }
     }
 }
