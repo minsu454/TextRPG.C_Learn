@@ -1,14 +1,12 @@
 ﻿namespace TextRPG
 {
-    public class BaseStageClearQuest : BaseQuest
+    public class StageClearQuest : BaseQuest
     {
-        public override QuestType QuestType => QuestType.StageClear;
-
-        public override string Name => "기본 다지기";
-        public override string Comment => "던전에 있는";
+        public override string Name => "던전 탐험";
+        public override string Comment => "다양한 몬스터들을 만나보자";
         public override string Reward => "1000 G";
 
-        private int maxCount = 5;
+        protected virtual int MaxCount { get; }
 
         public override void Init()
         {
@@ -22,10 +20,10 @@
 
         private void OnStageClear(object args)
         {
-            //if (buyItem!.Name == "무기")
-            //{
-            //    State = QuestStateType.Completed;
-            //}
+            if (GameManager.player.StageNum == MaxCount)
+            {
+                State = QuestStateType.Completed;
+            }
         }
     }
 }

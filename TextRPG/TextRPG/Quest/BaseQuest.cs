@@ -22,20 +22,10 @@
         public virtual string Comment { get; }
         public virtual string Reward { get; }
 
-        public List<int> payList = new List<int>();
+        protected List<int> rewardList = new List<int>();
 
         public abstract void Init();
         public abstract void Release();
-
-        public bool IsOccult()
-        {
-            if (state == QuestStateType.Occult)
-            {
-                return true;
-            }
-
-            return false;
-        }
 
         public event Action<BaseQuest, QuestStateType> stateChanged;
     }

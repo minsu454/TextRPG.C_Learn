@@ -32,9 +32,12 @@
             if (CurCount >= MaxCount)
             {
                 State = QuestStateType.Completed;
-                
+
                 //보상주기
+                GiveRewarded();
             }
         }
+
+        protected virtual void GiveRewarded() {}
     }
 }

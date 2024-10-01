@@ -22,9 +22,6 @@
                 case QuestType.Rest:
                     quest = new RestQuest();
                     break;
-                case QuestType.StageClear:
-                    quest = new BaseStageClearQuest();
-                    break;
                 default:
                     break;
             }

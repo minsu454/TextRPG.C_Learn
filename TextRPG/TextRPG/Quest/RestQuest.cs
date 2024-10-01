@@ -3,7 +3,7 @@
     public class RestQuest : BaseQuest
     {
         public override string Name => "휴식";
-        public override string Comment => "3번 해보자";
+        public override string Comment => "10번 해보자";
         public override string Reward => "100 G";
 
         public int count = 0;
@@ -34,7 +34,7 @@
         {
             count++;
 
-            if (count == 3)
+            if (count == 10)
             {
                 State = QuestStateType.Completed;
 

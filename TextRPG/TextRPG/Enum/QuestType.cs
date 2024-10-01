@@ -10,6 +10,5 @@
         KillGoblin = 2,     //고블린 잡기
         KillOrk = 3,        //오크 잡기
         Rest = 4,           //휴식
-        StageClear = 5,     //게임클리어
     }
 }

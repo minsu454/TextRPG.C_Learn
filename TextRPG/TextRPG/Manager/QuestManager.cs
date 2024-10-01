@@ -5,12 +5,15 @@
         private readonly Dictionary<QuestType, BaseQuest> questDic = new Dictionary<QuestType, BaseQuest>();
         public Dictionary<QuestType, BaseQuest> QuestDic {  get { return questDic; } }
 
-        
         public void Init()
         {
-            AddQuest(QuestType.KillGoblin);
-            AddQuest(QuestType.KillOrk);
-            AddQuest(QuestType.StageClear);
+            foreach (QuestType type in Enum.GetValues(typeof(QuestType)))
+            {
+                if (type == QuestType.None)
+                    continue;
+
+                AddQuest(type);
+            }
         }
 
         /// <summary>
@@ -36,7 +39,7 @@
         {
             if (state == QuestStateType.Completed)
             {
-                RemoveQuest(quest.QuestType);
+                ResetQuest(quest.QuestType);
             }
         }
 
@@ -49,6 +52,18 @@
             {
                 quest.stateChanged -= Quest_stateChanged;
                 quest.Release();
+            }
+        }
+
+        /// <summary>
+        /// 퀘스트 이벤트 지워주는 함수
+        /// </summary>
+        private void ResetQuest(QuestType questType)
+        {
+            if (questDic.ContainsKey(questType))
+            {
+                questDic[questType].State = QuestStateType.None;
+                questDic[questType].Release();
             }
         }
     }

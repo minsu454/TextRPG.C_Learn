@@ -7,6 +7,7 @@ namespace TextRPG
     public class Player
     {
         public int level;
+        public int StageNum;
 
         public string playerName { get; set; }
         public string playerJob { get; set; }
@@ -18,9 +19,11 @@ namespace TextRPG
 
         public int playerGold { get; set; }
 
+
         public Player(string name, string job, int attack, int defense, int maxHealth, int gold)
         {
             level = 1;
+            StageNum = 1;
             playerName = name;
             playerJob = job;
             playerAttack = attack;
