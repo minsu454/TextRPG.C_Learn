@@ -25,57 +25,19 @@ namespace TextRPG.Scene
                 Console.WriteLine("\n구매하시겠습니까?");
                 if (input == 1)
                 {
-                    Input.Selection(1, "예", "아니오");
-                    if (input == 1)
-                    {
-                        Console.WriteLine("\n구매가 완료되었습니다.");
-                        //GameManager.Item.ItemEquip = true;
-                    }
-                    else if (input == 2) 
-                    {
-
-                    }
-
+                    Buyitem();
                 }                
                 if (input == 2)
                 {
-                    Input.Selection(1, "예", "아니오");
-                    if (input == 1)
-                    {
-                        Console.WriteLine("\n구매가 완료되었습니다.");
-                        //GameManager.Item.ItemEquip = true;
-                    }
-                    else if (input == 2) 
-                    {
-
-                    }
-
-                }if (input == 3)
+                    Buyitem();
+                }
+                if (input == 3)
                 {
-                    Input.Selection(1, "예", "아니오");
-                    if (input == 1)
-                    {
-                        Console.WriteLine("\n구매가 완료되었습니다.");
-                        //GameManager.Item.ItemEquip = true;
-                    }
-                    else if (input == 2) 
-                    {
-
-                    }
-
-                }if (input == 4)
+                    Buyitem();
+                }
+                if (input == 4)
                 {
-                    Input.Selection(1, "예", "아니오");
-                    if (input == 1)
-                    {
-                        Console.WriteLine("\n구매가 완료되었습니다.");
-                        //GameManager.Item.ItemEquip = true;
-                    }
-                    else if (input == 2) 
-                    {
-
-                    }
-
+                    Buyitem();
                 }
                 else if (input == 5)
                 {
@@ -83,6 +45,19 @@ namespace TextRPG.Scene
                 }
             }
             Thread.Sleep(500);
+        }
+        public void Buyitem()
+        {
+            int input = Input.Selection(1, "예", "아니오");
+            if (input == 1)
+            {
+                Console.WriteLine("\n구매가 완료되었습니다.");
+                GameManager.player.List<Item> = add();
+            }
+            else if (input == 2)
+            {
+                Console.WriteLine("\n구매를 취소하였습니다.");
+            }
         }
     }
 }
