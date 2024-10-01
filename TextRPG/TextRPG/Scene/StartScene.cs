@@ -3,9 +3,8 @@ using System.Xml.Linq;
 
 namespace TextRPG
 {
-    public class StartScene : BaseScene, IMainScene
+    public class StartScene : BaseScene
     {
-        private int shiftCount = 0;
         private bool jobSelected = false; // 직업이 선택되었는지 여부 확인 안되었으면 stay
 
         public override void Load()
@@ -27,6 +26,7 @@ namespace TextRPG
                 if (input == 1)
                 {
                     GameManager.player = GameManager.Save.Load<Player>();
+                    GameManager.player.Load();
                     return;
                 }
             }

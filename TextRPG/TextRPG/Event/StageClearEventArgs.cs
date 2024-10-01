@@ -1,6 +1,6 @@
 ﻿namespace TextRPG
 {
-    public interface IMainScene
+    public class StageClearEventArgs
     {
     }
 }

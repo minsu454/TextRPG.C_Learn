@@ -5,6 +5,16 @@ namespace TextRPG
     public static class Print
     {
         /// <summary>
+        /// 스크린에 색 글씨 띄워주는 함수
+        /// </summary>
+        public static void ColorPrintScreen(ConsoleColor color, string s)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(s);
+            Console.ResetColor();
+        }
+
+        /// <summary>
         /// 스크린에 띄워주는 함수
         /// </summary>
         public static void PrintScreen(StringBuilder sb)

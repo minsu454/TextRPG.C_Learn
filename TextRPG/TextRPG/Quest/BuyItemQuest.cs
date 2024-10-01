@@ -1,7 +1,9 @@
 ﻿namespace TextRPG
 {
-    public class Test1 : BaseQuest
+    public class BuyItemQuest : BaseQuest
     {
+        public override QuestNameType QuestNameType => QuestNameType.BuyItem;
+
         public override string Name => "무기구매";
         public override string Comment => "하나만 사보자";
         public override string Reward => "1000 G";
@@ -24,6 +26,11 @@
             {
                 State = QuestStateType.Completed;
             }
+        }
+
+        public override void GiveReward()
+        {
+
         }
     }
 }

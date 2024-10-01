@@ -20,12 +20,11 @@
         {
             if (IsDead)
             {
-                Console.WriteLine($"{Name}이(가) 죽었습니다.");
+                Health = 0;
             }
             else
             {
                 Health -= damage;
-                Console.WriteLine($"{Name}이(가) {damage}의 데미지를 받았습니다. 남은 체력: {Health}");
             }
         }     
              

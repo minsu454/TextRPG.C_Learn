@@ -2,30 +2,40 @@
 {
     public abstract class BaseQuest
     {
-        private QuestStateType _state;
+        private QuestStateType state = QuestStateType.None;
         public QuestStateType State
         {
-            get { return _state; }
+            get { return state; }
             set
             {
-                if (_state == value)
+                if (state == value)
                 {
                     return;
                 }
-                _state = value;
+                state = value;
                 stateChanged.Invoke(this, value);
             }
         }
-        public QuestType Type { get; init; }
+        public virtual QuestNameType QuestNameType { get; }
 
         public virtual string Name { get; }
         public virtual string Comment { get; }
         public virtual string Reward { get; }
+        public virtual int CurCount { get; set; } = 0;
+        public virtual int MaxCount { get; }
 
-        public List<int> payList = new List<int>();
+        protected List<int> rewardList = new List<int>();
 
         public abstract void Init();
         public abstract void Release();
+        public abstract void GiveReward();
+
+        public void Reset()
+        {
+            state = QuestStateType.None;
+            CurCount = 0;
+            Release();
+        }
 
         public event Action<BaseQuest, QuestStateType> stateChanged;
     }
