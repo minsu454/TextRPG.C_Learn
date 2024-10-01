@@ -131,6 +131,8 @@
 
                     Console.WriteLine("\n1. 나가기\n");
 
+                    GameManager.player = GameManager.Save.Load<Player>();
+
                     int input2 = Input.InputKey(1, 1);
 
                     GameManager.Scene.OpenScene(SceneType.Lobby);
