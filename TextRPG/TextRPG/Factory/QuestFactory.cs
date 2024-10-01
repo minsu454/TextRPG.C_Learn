@@ -10,14 +10,20 @@
             BaseQuest quest = null;
             switch (type)
             {
-                case QuestType.Test1:
-                    quest = new Test1() { Type = QuestType.Test1 };
+                case QuestType.BuyItem:
+                    quest = new BuyItemQuest();
                     break;
-                case QuestType.Test2:
-                    quest = new Test2() { Type = QuestType.Test2 };
+                case QuestType.KillGoblin:
+                    quest = new KillGoblinQuest();
                     break;
-                case QuestType.Test3:
-                    quest = new Test3() { Type = QuestType.Test3 };
+                case QuestType.KillOrk:
+                    quest = new KillGoblinQuest();
+                    break;
+                case QuestType.Rest:
+                    quest = new RestQuest();
+                    break;
+                case QuestType.StageClear:
+                    quest = new BaseStageClearQuest();
                     break;
                 default:
                     break;

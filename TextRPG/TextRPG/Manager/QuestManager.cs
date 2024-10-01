@@ -5,22 +5,12 @@
         private readonly Dictionary<QuestType, BaseQuest> questDic = new Dictionary<QuestType, BaseQuest>();
         public Dictionary<QuestType, BaseQuest> QuestDic {  get { return questDic; } }
 
-        List<QuestType> questList = new List<QuestType>();
-
-        /// <summary>
-        /// 생성
-        /// </summary>
+        
         public void Init()
         {
-            foreach(QuestType type in Enum.GetValues(typeof(QuestType)))
-            {
-                if (type == QuestType.None)
-                {
-                    continue;
-                }
-
-                AddQuest(type);
-            }
+            AddQuest(QuestType.KillGoblin);
+            AddQuest(QuestType.KillOrk);
+            AddQuest(QuestType.StageClear);
         }
 
         /// <summary>
@@ -46,8 +36,7 @@
         {
             if (state == QuestStateType.Completed)
             {
-                questList.Add(quest.Type);
-                RemoveQuest(quest.Type);
+                RemoveQuest(quest.QuestType);
             }
         }
 

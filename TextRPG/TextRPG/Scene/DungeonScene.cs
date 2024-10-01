@@ -80,17 +80,17 @@
                 {
                     case 1: // 1번 몹 선택시
 
-                        DungeonStart(atkdamage, 0);
+                        PlayerAttack(atkdamage, 0);
                         break;
 
                     case 2: // 2번 몹 선택시
 
-                        DungeonStart(atkdamage, 1);
+                        PlayerAttack(atkdamage, 1);
                         break;
 
                     case 3: // 3번 몹 선택시
 
-                        DungeonStart(atkdamage, 2);
+                        PlayerAttack(atkdamage, 2);
                         break;
 
                     default: // 그 외
@@ -151,7 +151,7 @@
         }
 
         private int MonsterIndex = 0; // 몹 순차적 공격 위한 값
-        public void DungeonStart(int atkdamage, int index) // 공격 함수
+        public void PlayerAttack(int atkdamage, int index) // 공격 함수
         {
             Player player = GameManager.player;
 
@@ -168,59 +168,7 @@
                 Console.WriteLine($"Lv.{monsters[index].Level} {monsters[index].Name} 을(를) 맞췄습니다. [데미지 : {atkdamage}]");
                 Console.WriteLine($"Hp {mobCurHealth} -> {monsters[index].Health}\n");
 
-                while (true) // 플레이어에게 공격할 몬스터 선택
-                {
-                    if (monsters[MonsterIndex].Health > 0) 
-                    {
-                        int playerCurHealth = player.playerCurHealth;
-
-                        Thread.Sleep(500);
-
-                        Console.WriteLine($"Lv.{monsters[MonsterIndex].Level} {monsters[MonsterIndex].Name} 의 공격!");
-                        Console.WriteLine(player.playerName + "을(를) 맞췄습니다. [데미지 : "+$"{monsters[MonsterIndex].Attack}"+"]");
-
-                        player.playerCurHealth -= monsters[MonsterIndex].Attack;
-
-                        Console.Write("Lv. " + player.level + " " + player.playerName);
-                        Console.WriteLine("Hp " + playerCurHealth + " -> " + $"{player.playerCurHealth}\n");
-
-                        Thread.Sleep(500);
-
-                        MonsterIndex = (MonsterIndex + 1) % monsters.Count; // 몬스터 한턴 한마리씩 공격
-
-                        break;
-                    }
-
-                    MonsterIndex = (MonsterIndex + 1) % monsters.Count; // 현재 몬스터가 죽으면? 다음 몬스터가 공격
-
-                    if (monsters.All(alldead => alldead.IsDead))
-                    {
-                        Console.Clear();
-
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Win!\n");
-                        Console.ResetColor();
-
-                        for (int i = 0; i < monsters.Count; i++)
-                        {
-                            if (monsters[i].IsDead)
-                            {
-                                Console.ForegroundColor = ConsoleColor.DarkGray;
-                                Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name} Dead");
-                                Console.ResetColor();
-                            }
-                        }
-
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\n모든 몬스터를 처치했습니다!");
-                        Console.ResetColor();
-                        // 전투 종료시 ?
-
-                        GameManager.Scene.OpenScene(SceneType.Lobby);
-
-                        return; // 전투 종료
-                    }
-                }
+                MonsterAttack();
             }
             else
             {
@@ -228,6 +176,58 @@
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("올바른 대상을 지정해주세요.\n");
                 Console.ResetColor();
+            }
+        }
+
+        public void MonsterAttack()
+        {
+            if (!monsters[MonsterIndex].IsDead)
+            {
+                int playerCurHealth = player.playerCurHealth;
+
+                Thread.Sleep(500);
+
+                Console.WriteLine($"Lv.{monsters[MonsterIndex].Level} {monsters[MonsterIndex].Name} 의 공격!");
+                Console.WriteLine(player.playerName + "을(를) 맞췄습니다. [데미지 : " + $"{monsters[MonsterIndex].Attack}" + "]");
+
+                player.playerCurHealth -= monsters[MonsterIndex].Attack;
+
+                Console.Write("Lv. " + player.level + " " + player.playerName);
+                Console.WriteLine("Hp " + playerCurHealth + " -> " + $"{player.playerCurHealth}\n");
+
+                Thread.Sleep(500);
+
+                MonsterIndex = (MonsterIndex + 1) % monsters.Count; // 몬스터 한턴 한마리씩 공격
+
+            }
+
+            MonsterIndex = (MonsterIndex + 1) % monsters.Count; // 현재 몬스터가 죽으면? 다음 몬스터가 공격
+
+            if (monsters.All(alldead => alldead.IsDead))
+            {
+                Console.Clear();
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Win!\n");
+                Console.ResetColor();
+
+                for (int i = 0; i < monsters.Count; i++)
+                {
+                    if (monsters[i].IsDead)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name} Dead");
+                        Console.ResetColor();
+                    }
+                }
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n모든 몬스터를 처치했습니다!");
+                Console.ResetColor();
+                // 전투 종료시 ?
+
+
+                GameManager.Scene.OpenScene(SceneType.Lobby);
             }
         }
     }

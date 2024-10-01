@@ -2,21 +2,21 @@
 {
     public abstract class BaseQuest
     {
-        private QuestStateType _state;
+        private QuestStateType state = QuestStateType.None;
         public QuestStateType State
         {
-            get { return _state; }
+            get { return state; }
             set
             {
-                if (_state == value)
+                if (state == value)
                 {
                     return;
                 }
-                _state = value;
+                state = value;
                 stateChanged.Invoke(this, value);
             }
         }
-        public QuestType Type { get; init; }
+        public virtual QuestType QuestType { get; }
 
         public virtual string Name { get; }
         public virtual string Comment { get; }
@@ -26,6 +26,16 @@
 
         public abstract void Init();
         public abstract void Release();
+
+        public bool IsOccult()
+        {
+            if (state == QuestStateType.Occult)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         public event Action<BaseQuest, QuestStateType> stateChanged;
     }

@@ -35,10 +35,13 @@ namespace TextRPG
 
             int enumLength = Enum.GetValues(typeof(QuestType)).Length;
 
-            for (int i = 1; i < enumLength; i++)
+            int i = 1;
+            foreach (QuestType type in Enum.GetValues(typeof(QuestType)))
             {
-                sb.AppendLine($"{i}. {GameManager.Quest.QuestDic[(QuestType)i].Name}");
+                sb.AppendLine($"{i}. {GameManager.Quest.QuestDic[type].Name}");
+                i++;
             }
+
             sb.AppendLine();
 
             Print.PrintScreen(sb);
