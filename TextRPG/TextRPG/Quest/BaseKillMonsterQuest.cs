@@ -2,11 +2,9 @@
 {
     public class BaseKillMonsterQuest : BaseQuest
     {
-        public override QuestType QuestType => QuestType.KillGoblin;
+        public override QuestNameType QuestNameType => QuestNameType.KillGoblin;
 
         protected virtual string MonsterName { get; }
-        protected virtual int CurCount { get; private set; } = 0;
-        protected virtual int MaxCount { get; }
 
         public override void Init()
         {

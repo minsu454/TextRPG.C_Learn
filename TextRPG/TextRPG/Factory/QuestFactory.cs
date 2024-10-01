@@ -5,21 +5,21 @@
         /// <summary>
         /// 퀘스트 생성자 리턴해주는 함수
         /// </summary>
-        public static BaseQuest CreateQuest(QuestType type)
+        public static BaseQuest CreateQuest(QuestNameType type)
         {
             BaseQuest quest = null;
             switch (type)
             {
-                case QuestType.BuyItem:
+                case QuestNameType.BuyItem:
                     quest = new BuyItemQuest();
                     break;
-                case QuestType.KillGoblin:
+                case QuestNameType.KillGoblin:
                     quest = new KillGoblinQuest();
                     break;
-                case QuestType.KillOrk:
-                    quest = new KillGoblinQuest();
+                case QuestNameType.KillOrk:
+                    quest = new KillOrkQuest();
                     break;
-                case QuestType.Rest:
+                case QuestNameType.Rest:
                     quest = new RestQuest();
                     break;
                 default:

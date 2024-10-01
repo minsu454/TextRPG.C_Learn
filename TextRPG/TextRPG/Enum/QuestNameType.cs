@@ -3,7 +3,7 @@
     /// <summary>
     /// 퀘스트 이름 타입
     /// </summary>
-    public enum QuestType
+    public enum QuestNameType
     {
         None = 0,
         BuyItem = 1,        //아이템 살때 호출

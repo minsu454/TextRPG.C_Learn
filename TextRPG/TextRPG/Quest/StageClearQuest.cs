@@ -6,7 +6,7 @@
         public override string Comment => "다양한 몬스터들을 만나보자";
         public override string Reward => "1000 G";
 
-        protected virtual int MaxCount { get; }
+        public override int MaxCount { get; }
 
         public override void Init()
         {
