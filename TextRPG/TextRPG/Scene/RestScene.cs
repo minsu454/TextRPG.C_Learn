@@ -20,6 +20,7 @@
             if (input == 1)
             {
                 GameManager.player!.playerCurHealth = GameManager.player.playerMaxHealth;
+                GameManager.Event.Dispatch(GameEventType.Rest, new RestEventArgs());
             }
         }
     }

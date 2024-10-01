@@ -73,6 +73,9 @@ namespace TextRPG
 
             int input = Input.Selection(1, "수락", "거절");
 
+            if(input == 1)
+                GameManager.Quest.AddQuest(type);
+
             Console.Clear();
 
             return input;

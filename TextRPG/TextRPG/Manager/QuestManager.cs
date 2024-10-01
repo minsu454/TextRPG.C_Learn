@@ -8,6 +8,22 @@
         List<QuestType> questList = new List<QuestType>();
 
         /// <summary>
+        /// 생성
+        /// </summary>
+        public void Init()
+        {
+            foreach(QuestType type in Enum.GetValues(typeof(QuestType)))
+            {
+                if (type == QuestType.None)
+                {
+                    continue;
+                }
+
+                AddQuest(type);
+            }
+        }
+
+        /// <summary>
         /// 퀘스트 이벤트 구독해주는 함수
         /// </summary>
         public void AddQuest(QuestType questType)
@@ -31,6 +47,7 @@
             if (state == QuestStateType.Completed)
             {
                 questList.Add(quest.Type);
+                RemoveQuest(quest.Type);
             }
         }
 

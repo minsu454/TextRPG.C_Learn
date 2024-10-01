@@ -25,6 +25,7 @@ namespace TextRPG
         {
             isRun = true;
             Scene.Init();
+            Quest.Init();
         }
 
         /// <summary>

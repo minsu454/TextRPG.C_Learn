@@ -16,6 +16,9 @@
                 case QuestType.Test2:
                     quest = new Test2() { Type = QuestType.Test2 };
                     break;
+                case QuestType.Test3:
+                    quest = new Test3() { Type = QuestType.Test3 };
+                    break;
                 default:
                     break;
             }
