@@ -2,14 +2,14 @@
 {
     public class QuestManager
     {
-        private readonly Dictionary<QuestType, BaseQuest> questDic = new Dictionary<QuestType, BaseQuest>();
-        public Dictionary<QuestType, BaseQuest> QuestDic {  get { return questDic; } }
+        private readonly Dictionary<QuestNameType, BaseQuest> questDic = new Dictionary<QuestNameType, BaseQuest>();
+        public Dictionary<QuestNameType, BaseQuest> QuestDic {  get { return questDic; } }
 
         public void Init()
         {
-            foreach (QuestType type in Enum.GetValues(typeof(QuestType)))
+            foreach (QuestNameType type in Enum.GetValues(typeof(QuestNameType)))
             {
-                if (type == QuestType.None)
+                if (type == QuestNameType.None)
                     continue;
 
                 AddQuest(type);
@@ -19,7 +19,7 @@
         /// <summary>
         /// 퀘스트 이벤트 구독해주는 함수
         /// </summary>
-        public void AddQuest(QuestType questType)
+        public void AddQuest(QuestNameType questType)
         {
             if(questDic.ContainsKey(questType))
             {
@@ -45,13 +45,12 @@
             {
                 quest.GiveReward();
             }
-
         }
 
         /// <summary>
         /// 퀘스트 이벤트 지워주는 함수
         /// </summary>
-        private void RemoveQuest(QuestType questType)
+        private void RemoveQuest(QuestNameType questType)
         {
             if (questDic.Remove(questType, out var quest))
             {
@@ -63,7 +62,7 @@
         /// <summary>
         /// 퀘스트 이벤트 지워주는 함수
         /// </summary>
-        private void ResetQuest(QuestType questType)
+        private void ResetQuest(QuestNameType questType)
         {
             if (questDic.ContainsKey(questType))
             {

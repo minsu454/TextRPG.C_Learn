@@ -2,13 +2,13 @@
 {
     public class RestQuest : BaseQuest
     {
-        public override QuestType QuestType => QuestType.Rest;
+        public override QuestNameType QuestNameType => QuestNameType.Rest;
 
         public override string Name => "휴식";
-        public override string Comment => "10번 해보자";
-        public override string Reward => "100 G";
+        public override string Comment => "던전을 많이 돌아 지친 우리들에게 휴식은 필수이다.\n휴식하기 기능을 이용해보자";
+        public override string Reward => "10 G";
 
-        public int count = 0;
+        public override int MaxCount => 10;
 
         public override void Init()
         {
@@ -22,9 +22,9 @@
 
         private void OnRest(object args)
         {
-            count++;
+            CurCount++;
 
-            if (count == 10)
+            if (CurCount >= MaxCount)
             {
                 State = QuestStateType.Completed;
             }
@@ -32,7 +32,7 @@
 
         public override void GiveReward()
         {
-
+            GameManager.player.playerGold += 10;
         }
     }
 }

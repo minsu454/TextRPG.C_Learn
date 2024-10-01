@@ -7,7 +7,7 @@
         public override string Reward => "10 G";
 
         protected override string MonsterName => "Goblin";
-        protected override int MaxCount => 1;
+        public override int MaxCount => 1;
 
         public override void GiveReward()
         {

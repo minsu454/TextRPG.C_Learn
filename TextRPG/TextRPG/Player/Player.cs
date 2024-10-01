@@ -19,7 +19,7 @@ namespace TextRPG
 
         public int playerGold { get; set; }
 
-        public List<ValueTuple<QuestType, BaseQuest>> questList = new List<(QuestType, BaseQuest)>();
+        public List<(QuestNameType, QuestStateType, int)> questList = new List<(QuestNameType, QuestStateType, int)>();
 
         public Player(string name, string job, int attack, int defense, int maxHealth, int gold)
         {
@@ -36,11 +36,12 @@ namespace TextRPG
 
         public void Save()
         {
+            questList.Clear();
             var dic = GameManager.Quest.QuestDic;
             foreach (var kvp in dic)
             {
                 if(kvp.Value.State != QuestStateType.None)
-                    questList.Add(new (kvp.Key, kvp.Value));
+                    questList.Add(new (kvp.Key, kvp.Value.State, kvp.Value.CurCount));
             }
 
             GameManager.Save.Save(this);
@@ -52,7 +53,8 @@ namespace TextRPG
 
             foreach (var kvp in questList)
             {
-                dic[kvp.Item1] = kvp.Item2;
+                dic[kvp.Item1].State = kvp.Item2;
+                dic[kvp.Item1].CurCount = kvp.Item3;
             }
         }
     }

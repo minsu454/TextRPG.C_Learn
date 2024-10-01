@@ -15,7 +15,7 @@ namespace TextRPG
             input = QuestChoicePrintAndInput();
 
             if(input != 0)
-                QuestExplanationPrintAndInput((QuestType)input);
+                QuestExplanationPrintAndInput((QuestNameType)input);
 
             GameManager.Scene.CloseScene();
         }
@@ -30,10 +30,10 @@ namespace TextRPG
 
             sb.AppendLine("Quest!!\n");
 
-            int enumLength = Enum.GetValues(typeof(QuestType)).Length;
+            int enumLength = Enum.GetValues(typeof(QuestNameType)).Length;
 
             int i = 1;
-            foreach (QuestType type in Enum.GetValues(typeof(QuestType)))
+            foreach (QuestNameType type in Enum.GetValues(typeof(QuestNameType)))
             {
                 try
                 {
@@ -62,13 +62,13 @@ namespace TextRPG
         /// <summary>
         /// 퀘스트 설명해주는 화면, 결과 값 반환 함수
         /// </summary>
-        private void QuestExplanationPrintAndInput(QuestType type)
+        private void QuestExplanationPrintAndInput(QuestNameType type)
         {
             BaseQuest quest = GameManager.Quest.QuestDic[type];
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine(
-@$"Quest!! {QuestFactory.GetQuestName(quest.State)}
+@$"Quest!! {QuestFactory.GetQuestName(quest.State)} {(quest.State == QuestStateType.Doing ? $"남은 횟수 {quest.MaxCount - quest.CurCount}" : "")}
 
 {quest.Name}
 
@@ -103,6 +103,9 @@ namespace TextRPG
 
                         if (input == 1)
                             quest.State = QuestStateType.Rewarded;
+
+                        Console.WriteLine();
+                        Console.WriteLine("보상을 받았습니다.");
                     }
                     break;
                 case QuestStateType.Rewarded:

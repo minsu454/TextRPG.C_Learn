@@ -16,11 +16,13 @@
                 stateChanged.Invoke(this, value);
             }
         }
-        public virtual QuestType QuestType { get; }
+        public virtual QuestNameType QuestNameType { get; }
 
         public virtual string Name { get; }
         public virtual string Comment { get; }
         public virtual string Reward { get; }
+        public virtual int CurCount { get; set; } = 0;
+        public virtual int MaxCount { get; }
 
         protected List<int> rewardList = new List<int>();
 

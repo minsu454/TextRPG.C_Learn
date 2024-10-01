@@ -48,7 +48,9 @@
                 return;
             }
 
-            foreach (var listener in list)
+            var temp = list.ToList();
+
+            foreach (var listener in temp)
             {
                 try
                 {

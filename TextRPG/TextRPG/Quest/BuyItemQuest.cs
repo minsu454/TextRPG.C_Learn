@@ -2,7 +2,7 @@
 {
     public class BuyItemQuest : BaseQuest
     {
-        public override QuestType QuestType => QuestType.BuyItem;
+        public override QuestNameType QuestNameType => QuestNameType.BuyItem;
 
         public override string Name => "무기구매";
         public override string Comment => "하나만 사보자";
