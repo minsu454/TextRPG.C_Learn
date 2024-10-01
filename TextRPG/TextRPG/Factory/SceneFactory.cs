@@ -1,4 +1,6 @@
-﻿namespace TextRPG
+﻿using TextRPG.Scene;
+
+namespace TextRPG
 {
     public static class SceneFactory
     {
@@ -36,6 +38,12 @@
                     break;
                 case SceneType.Save:
                     scene = new SaveScene();
+                    break;
+                case SceneType.StoreWeapon:
+                    scene = new StoreScene_Weapon();
+                    break;
+                case SceneType.StoreArmor:
+                    scene = new StoreScene_Armor();
                     break;
                 default:
                     break;

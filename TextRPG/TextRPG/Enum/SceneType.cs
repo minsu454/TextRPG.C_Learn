@@ -15,5 +15,7 @@
         Dungeon = 7,        //던전
         Rest = 8,           //휴식
         Save = 9,           //저장
+        StoreWeapon = 10,
+        StoreArmor = 11,
     }
 }
