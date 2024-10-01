@@ -76,31 +76,19 @@
 
                     // 공격력 10% +- 오차범위 랜덤
 
-                    switch (input)
+                    if (1 <= input && input <= 3)
                     {
-                        case 1: // 1번 몹 선택시
-
-                            PlayerAttack(atkdamage, 0);
-                            break;
-
-                        case 2: // 2번 몹 선택시
-
-                            PlayerAttack(atkdamage, 1);
-                            break;
-
-                        case 3: // 3번 몹 선택시
-
-                            PlayerAttack(atkdamage, 2);
-                            break;
-
-                        default: // 그 외
-
-                            Console.Clear();
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("올바른 대상을 지정해주세요.\n");
-                            Console.ResetColor();
-                            break;
+                        PlayerAttack(atkdamage, input - 1);
                     }
+                    else
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("올바른 대상을 지정해주세요.\n");
+                        Console.ResetColor();
+                        break;
+                    }
+
                 }
                 else
                 {
