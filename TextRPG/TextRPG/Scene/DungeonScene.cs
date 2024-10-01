@@ -100,7 +100,6 @@
                             Console.WriteLine("올바른 대상을 지정해주세요.\n");
                             Console.ResetColor();
                             break;
-
                     }
                 }
                 else

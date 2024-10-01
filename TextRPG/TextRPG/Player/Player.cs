@@ -19,6 +19,7 @@ namespace TextRPG
 
         public int playerGold { get; set; }
 
+        public List<ValueTuple<QuestType, BaseQuest>> questList = new List<(QuestType, BaseQuest)>();
 
         public Player(string name, string job, int attack, int defense, int maxHealth, int gold)
         {
@@ -33,9 +34,26 @@ namespace TextRPG
             playerGold = gold;
         }
 
-        public void ShowJobDetails() 
+        public void Save()
         {
-            Console.WriteLine($"\n이름: {playerName}\n직업: {playerJob}\n공격력: {playerAttack}\n방어력: {playerDefense}\n체력: {playerCurHealth}/{playerMaxHealth}\n소지금: {playerGold}G");
+            var dic = GameManager.Quest.QuestDic;
+            foreach (var kvp in dic)
+            {
+                if(kvp.Value.State != QuestStateType.None)
+                    questList.Add(new (kvp.Key, kvp.Value));
+            }
+
+            GameManager.Save.Save(this);
+        }
+
+        public void Load()
+        {
+            var dic = GameManager.Quest.QuestDic;
+
+            foreach (var kvp in questList)
+            {
+                dic[kvp.Item1] = kvp.Item2;
+            }
         }
     }
 }

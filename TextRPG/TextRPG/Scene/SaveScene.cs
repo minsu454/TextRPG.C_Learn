@@ -10,7 +10,7 @@
 
             if (input == 1)
             {
-                GameManager.Save.Save(GameManager.player);
+                GameManager.player.Save();
 
                 Print.PrintScreenAndSleep("\n저장되었습니다.");
             }

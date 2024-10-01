@@ -27,6 +27,7 @@ namespace TextRPG
                 if (input == 1)
                 {
                     GameManager.player = GameManager.Save.Load<Player>();
+                    GameManager.player.Load();
                     return;
                 }
             }

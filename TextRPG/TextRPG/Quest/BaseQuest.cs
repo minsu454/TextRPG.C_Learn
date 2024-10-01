@@ -26,6 +26,7 @@
 
         public abstract void Init();
         public abstract void Release();
+        public abstract void GiveReward();
 
         public event Action<BaseQuest, QuestStateType> stateChanged;
     }

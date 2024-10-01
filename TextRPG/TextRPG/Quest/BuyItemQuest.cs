@@ -2,7 +2,7 @@
 {
     public class BuyItemQuest : BaseQuest
     {
-        public override QuestType QuestType => QuestType.None;
+        public override QuestType QuestType => QuestType.BuyItem;
 
         public override string Name => "무기구매";
         public override string Comment => "하나만 사보자";
@@ -26,6 +26,11 @@
             {
                 State = QuestStateType.Completed;
             }
+        }
+
+        public override void GiveReward()
+        {
+
         }
     }
 }

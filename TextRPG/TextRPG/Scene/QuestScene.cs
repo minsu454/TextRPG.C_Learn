@@ -11,14 +11,11 @@ namespace TextRPG
         public override void Load()
         {
             int input = 0;
-            QuestType quest = QuestType.None;
 
             input = QuestChoicePrintAndInput();
 
-            quest = (QuestType)input;
-            input = QuestExplanationPrintAndInput(quest);
-
-            GameManager.Quest.AddQuest(quest);
+            if(input != 0)
+                QuestExplanationPrintAndInput((QuestType)input);
 
             GameManager.Scene.CloseScene();
         }
@@ -31,22 +28,31 @@ namespace TextRPG
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("Quest!!");
+            sb.AppendLine("Quest!!\n");
 
             int enumLength = Enum.GetValues(typeof(QuestType)).Length;
 
             int i = 1;
             foreach (QuestType type in Enum.GetValues(typeof(QuestType)))
             {
-                sb.AppendLine($"{i}. {GameManager.Quest.QuestDic[type].Name}");
-                i++;
+                try
+                {
+                    var quest = GameManager.Quest.QuestDic[type];
+                    sb.AppendLine($"{i}. {quest.Name} {QuestFactory.GetQuestName(quest.State)}");
+                    i++;
+                }
+                catch
+                {
+
+                }
             }
 
+            sb.AppendLine($"0. 돌아가기");
             sb.AppendLine();
 
             Print.PrintScreen(sb);
 
-            int input = Input.InputKey(enumLength);
+            int input = Input.InputKey(enumLength + 1, 0);
 
             Console.Clear();
 
@@ -56,13 +62,13 @@ namespace TextRPG
         /// <summary>
         /// 퀘스트 설명해주는 화면, 결과 값 반환 함수
         /// </summary>
-        private int QuestExplanationPrintAndInput(QuestType type)
+        private void QuestExplanationPrintAndInput(QuestType type)
         {
             BaseQuest quest = GameManager.Quest.QuestDic[type];
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine(
-@$"Quest!! 
+@$"Quest!! {QuestFactory.GetQuestName(quest.State)}
 
 {quest.Name}
 
@@ -74,14 +80,36 @@ namespace TextRPG
 
             Print.PrintScreen(sb);
 
-            int input = Input.Selection(1, "수락", "거절");
+            int input;
 
-            if(input == 1)
-                GameManager.Quest.AddQuest(type);
+            switch (quest.State)
+            {
+                case QuestStateType.None:
+                    {
+                        input = Input.Selection(1, "수락", "거절");
 
+                        if (input == 1)
+                            GameManager.Quest.QuestDic[type].State = QuestStateType.Doing;
+                        break;
+                    }
+                case QuestStateType.Doing:
+                    {
+                        input = Input.Selection(1, "돌아가기");
+                    }
+                    break;
+                case QuestStateType.Completed:
+                    {
+                        input = Input.Selection(1, "보상받기", "돌아가기");
+
+                        if (input == 1)
+                            quest.State = QuestStateType.Rewarded;
+                    }
+                    break;
+                case QuestStateType.Rewarded:
+                    input = Input.Selection(1, "돌아가기");
+                    break;
+            }
             Console.Clear();
-
-            return input;
         }
         #endregion
     }

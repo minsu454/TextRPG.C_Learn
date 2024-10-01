@@ -25,5 +25,10 @@
                 State = QuestStateType.Completed;
             }
         }
+
+        public override void GiveReward()
+        {
+
+        }
     }
 }

@@ -27,5 +27,28 @@
             }
             return quest;
         }
+
+        public static string GetQuestName(QuestStateType state)
+        {
+            string s = null;
+
+            switch (state)
+            {
+                case QuestStateType.None:
+                    s = "";
+                    break;
+                case QuestStateType.Doing:
+                    s = "[진행중]";
+                    break;
+                case QuestStateType.Completed:
+                    s = "[완료]";
+                    break;
+                case QuestStateType.Rewarded:
+                    s = "[보상받음]";
+                    break;
+            }
+
+            return s;
+        }
     }
 }

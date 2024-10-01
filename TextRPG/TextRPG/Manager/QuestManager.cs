@@ -39,8 +39,13 @@
         {
             if (state == QuestStateType.Completed)
             {
-                ResetQuest(quest.QuestType);
+                quest.Release();
             }
+            else if (state == QuestStateType.Rewarded)
+            {
+                quest.GiveReward();
+            }
+
         }
 
         /// <summary>
