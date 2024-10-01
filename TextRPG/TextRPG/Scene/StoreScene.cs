@@ -45,7 +45,7 @@ namespace TextRPG
                 if (input == 1)
                 {
                     Console.WriteLine("구매가 완료되었습니다.");
-                    GameManager.Item.ItemEquip = true;
+                    //GameManager.Item.ItemEquip = true;
                 }
             } 
 
