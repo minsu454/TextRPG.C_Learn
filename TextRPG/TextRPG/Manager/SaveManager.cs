@@ -18,7 +18,7 @@ namespace TextRPG
         /// <summary>
         /// 데이터 로드해주는 함수
         /// </summary>
-        public T? Load<T>() where T : class
+        public T Load<T>() where T : class
         {
             if (!CanLoadFile())
             {
