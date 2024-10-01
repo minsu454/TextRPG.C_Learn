@@ -108,7 +108,7 @@
                     
                     int input2 = Input.InputKey(1, 1);
 
-                    switch (input)
+                    switch (input2)
                     {
                         case 1:
                             GameManager.Scene.OpenScene(SceneType.Lobby);
@@ -116,6 +116,28 @@
 
                         default:
                             
+                            break;
+                    }
+
+                    break;
+                }
+
+                if (player.playerCurHealth <= 0) // 플레이어가 죽었는지 확인
+                {
+                    Console.WriteLine($"{player.playerName}이(가) 쓰러졌습니다!");
+
+                    Console.WriteLine("\n1. 나가기\n");
+
+                    int input3 = Input.InputKey(1, 1);
+
+                    switch (input3)
+                    {
+                        case 1:
+                            GameManager.Scene.OpenScene(SceneType.Lobby);
+                            break;
+
+                        default:
+
                             break;
                     }
 
@@ -163,15 +185,6 @@
                         Console.WriteLine("Hp " + playerCurHealth + " -> " + $"{player.playerCurHealth}\n");
 
                         Thread.Sleep(500);
-
-                        if (player.playerCurHealth <= 0) // 플레이어가 죽었는지 확인
-                        {
-                            Console.WriteLine($"{player.playerName}이(가) 쓰러졌습니다!");
-
-                            GameManager.Scene.OpenScene(SceneType.Lobby);
-
-                            return; // 전투 종료
-                        }
 
                         MonsterIndex = (MonsterIndex + 1) % monsters.Count; // 몬스터 한턴 한마리씩 공격
 
