@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System.Security.Cryptography;
+using TextRPG.Interface;
 
 namespace TextRPG
 {
@@ -17,6 +18,8 @@ namespace TextRPG
         public readonly static StageInfo Stage = new StageInfo();
 
         public static Player player;
+        public static IWeapon weapon;
+        public static IArmor armor;
         
         /// <summary>
         /// 생성 함수

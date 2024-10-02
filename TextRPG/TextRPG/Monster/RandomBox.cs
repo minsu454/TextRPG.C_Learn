@@ -29,8 +29,5 @@ namespace TextRPG
         {
             return random.Next(0, 101); // 랜덤공격력은 0에서 100 사이
         }
-
-       
-
     }
 }
