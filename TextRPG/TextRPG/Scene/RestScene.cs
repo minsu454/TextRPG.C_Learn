@@ -2,7 +2,6 @@
 {
     public class RestScene : BaseScene
     {
-
         public override void Load()
         {
             Console.WriteLine($"현재 체력: {GameManager.player!.playerCurHealth}");  //플레이어의 현재 체력
@@ -24,5 +23,4 @@
             }
         }
     }
-
 }
