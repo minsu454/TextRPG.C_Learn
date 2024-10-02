@@ -18,6 +18,8 @@ namespace TextRPG
 
             Print.ColorPrintScreen(ConsoleColor.Yellow, "500 Gold를 내고 슬롯머신을 1회 사용 할 수 있습니다.\n");
 
+            Print.ColorPrintScreen(ConsoleColor.Yellow, "성공시 배팅금 5배! 잭팟시 배팅금 10배!\n");
+
             Print.ColorPrintScreen(ConsoleColor.Yellow, $"현재 소지금 : {player.playerGold} Gold\n");
 
             Console.WriteLine("\n----- 슬롯 머신 ------");
