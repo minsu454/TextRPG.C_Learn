@@ -23,6 +23,9 @@ namespace TextRPG
         public int playerMaxExp;
 
         public int playerGold;
+        
+        public int playerCritical;
+        public int playerDodge;
 
         public List<(QuestNameType, QuestStateType, int)> questList = new List<(QuestNameType, QuestStateType, int)>();
         public List<string> itemlist = new List<string>();
@@ -32,6 +35,8 @@ namespace TextRPG
         {
             level = 1;
             StageNum = 1;
+            playerCritical = 15;
+            playerDodge = 10;
             playerName = name;
             playerJob = job;
             playerAttack = attack;
