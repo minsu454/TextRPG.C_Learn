@@ -56,8 +56,7 @@ namespace TextRPG.Scene
                 {
                     if (GameManager.player.playerJob == GameManager.weapon.AbleJob)
                     {
-                        Weapon name = ;
-                        Console.WriteLine("\n\n" + name + " 구매가 완료되었습니다.");
+                        Console.WriteLine("\n\n" + weapon + " 구매가 완료되었습니다.");
                     }
                     else 
                     {
