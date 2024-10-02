@@ -1,8 +1,13 @@
-﻿namespace TextRPG
+﻿using static TextRPG.StageInfo;
+
+namespace TextRPG
 {
     public class DungeonScene : BaseScene, IMainScene
     {
         List<Monster> monsters = GameManager.Stage.monsters;
+
+        List<Stage> stages = GameManager.Stage.stages;
+
         private int MonsterIndex = 0;
         private bool isClear = false;
         private int exp = 0;
@@ -191,7 +196,15 @@
         {
             Console.Clear();
             Print.ColorPrintScreen(ConsoleColor.Green, "Win!\n");
+
+            Console.WriteLine($"보상으로 {stages[GameManager.player.StageNum - 1].gold} Gold를 획득하였습니다!"); // 클리어 보상
+
+            GameManager.player.playerGold += stages[GameManager.player.StageNum - 1].gold;
+
             GameManager.player.StageNum++;
+
+            if (GameManager.player.StageNum >= 6) GameManager.player.StageNum--;
+
             GameManager.player.GetExp(exp);
 
             Thread.Sleep(500);

@@ -2,15 +2,38 @@
 {
     public class StageInfo
     {
-        public int stagecount = 1; // 스테이지, 전투 쪽 코드에서 승리시 > 이 값 ++
+        public List<Stage> stages = new List<Stage>();
+        public StageInfo()
+        {
+            stages.Add(new Stage(500, 1, 2));  // 스테이지 1
+            stages.Add(new Stage(1000, 2, 3)); // 스테이지 2
+            stages.Add(new Stage(1500, 3, 5)); // 스테이지 3
+            stages.Add(new Stage(2000, 4, 6)); // 스테이지 4
+            stages.Add(new Stage(3000, 5, 7)); // 스테이지 5
+        }
+        public class Stage
+        {
+            public int gold;
+            public int mobMinCount;
+            public int mobMaxCount;
+
+            public Stage(int gold, int mobMinCount, int mobMaxCount)
+            {
+                this.gold = gold;
+                this.mobMinCount = mobMinCount;
+                this.mobMaxCount = mobMaxCount;
+            }
+        }
 
         public List<Monster> monsters = new List<Monster>();
 
         public int[] MobCount() // 몹 랜덤
         {
+            int nowstage = GameManager.player.StageNum;
+
             Random random = new Random();
 
-            int mobcount = random.Next(1, 4); // 등장하는 몹의 수
+            int mobcount = random.Next(stages[nowstage - 1].mobMinCount, stages[nowstage - 1].mobMaxCount + 1); // 등장하는 몹의 수
 
             return MobReturn(mobcount);
         }
