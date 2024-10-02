@@ -1,5 +1,8 @@
 ﻿namespace TextRPG
 {
+    /// <summary>
+    /// 퀘스트 상태 타입
+    /// </summary>
     public enum QuestStateType
     {
         None = 0,           //퀘스트 수락 전

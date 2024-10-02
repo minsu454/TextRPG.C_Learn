@@ -67,19 +67,19 @@ namespace TextRPG
                 {
                     case ConsoleKey.D1:
                         ShowJobDetails("전사", 30, 20, 1400, 1500);
-                        GameManager.player = new Player(playerName, "전사", 30, 20, 1400, 10, 1500);
+                        GameManager.player = new Player(playerName, "전사", 30, 20, 1400, 50, 10, 1500);
                         break;
                     case ConsoleKey.D2:
                         ShowJobDetails("궁수", 40, 15, 1000, 1500);
-                        GameManager.player = new Player(playerName, "궁수", 40, 15, 1000, 10, 1500);
+                        GameManager.player = new Player(playerName, "궁수", 40, 15, 1000, 40, 10, 1500);
                         break;
                     case ConsoleKey.D3:
                         ShowJobDetails("마법사", 40, 30, 900, 1500);
-                        GameManager.player = new Player(playerName, "마법사", 40, 30, 900, 10, 1500);
+                        GameManager.player = new Player(playerName, "마법사", 40, 30, 900, 100, 10, 1500);
                         break;
                     case ConsoleKey.D4:
                         ShowJobDetails("도적", 50, 10, 900, 1500);
-                        GameManager.player = new Player(playerName, "도적", 50, 10, 900, 10, 1500);
+                        GameManager.player = new Player(playerName, "도적", 50, 10, 900, 40, 10, 1500);
                         break;
                     default:
                         Console.WriteLine("잘못된 선택입니다. 다시 입력해주세요.");

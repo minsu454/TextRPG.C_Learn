@@ -11,11 +11,14 @@ namespace TextRPG
 
         public string playerName;
         public string playerJob;
+        private BaseJobSkill skill;
 
         public int playerAttack;
         public int playerDefense;
         public int playerCurHealth;
         public int playerMaxHealth;
+        public int playerCurMana;
+        public int playerMaxMana;
         public int playerCurExp;
         public int playerMaxExp;
 
@@ -23,8 +26,9 @@ namespace TextRPG
 
         public List<(QuestNameType, QuestStateType, int)> questList = new List<(QuestNameType, QuestStateType, int)>();
         public List<string> itemlist = new List<string>();
+
         
-        public Player(string name, string job, int attack, int defense, int maxHealth, int maxExp, int gold)
+        public Player(string name, string job, int attack, int defense, int maxHealth, int maxMana, int maxExp, int gold)
         {
             level = 1;
             StageNum = 1;
@@ -37,6 +41,7 @@ namespace TextRPG
             playerCurExp = 0;
             playerMaxExp = maxExp;
             playerGold = gold;
+            skill = SkillFactory.CreateSkill(playerJob);
         }
 
         public void GetExp(int exp)
@@ -102,6 +107,8 @@ namespace TextRPG
                 dic[kvp.Item1].State = kvp.Item2;
                 dic[kvp.Item1].CurCount = kvp.Item3;
             }
+
+            skill = SkillFactory.CreateSkill(playerJob);
         }
     }
 }
