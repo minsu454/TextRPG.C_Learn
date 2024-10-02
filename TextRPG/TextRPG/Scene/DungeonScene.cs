@@ -125,10 +125,32 @@ namespace TextRPG
 
             Console.Clear();
 
-            Print.PrintScreenAndSleep($"{player.playerName} 의 공격!\n");
-            Console.WriteLine($"Lv.{monsters[idx].Level} {monsters[idx].Name} 을(를) 맞췄습니다. [데미지 : {atkdamage}]");
+            Random random = new Random();
 
-            monsters[idx].TakeDamage(atkdamage);  // 테스트 시 공격력 수정하는 곳
+            bool miss = random.Next(100) < 10; // 빗나갈 확률
+            
+            if (miss) // 공격이 빗나갔을때
+            {
+                Console.WriteLine($"{player.playerName} 의 공격이 빗나갔습니다!");
+                
+                return; // 공격 중단
+            }
+
+            bool critical = random.Next(100) < 15; // 치명타 확률
+
+            int damagelog = atkdamage; // 데미지 값 반영
+            
+            Print.PrintScreenAndSleep($"{player.playerName} 의 공격!\n");
+
+            if (critical) // 치명타가 발생했을때
+            {
+                damagelog = (int)(atkdamage * 1.6);
+                Print.ColorPrintScreen(ConsoleColor.Red, "치명타!!");
+            }
+
+            Console.WriteLine($"Lv.{monsters[idx].Level} {monsters[idx].Name} 을(를) 맞췄습니다. [데미지 : {damagelog}]");
+
+            monsters[idx].TakeDamage(damagelog);
 
             if (monsters[idx].Health <= 0)
             {
