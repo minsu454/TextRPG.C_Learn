@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,7 +57,7 @@ namespace TextRPG.Scene
                 {
                     if (GameManager.player.playerJob == GameManager.weapon.AbleJob)
                     {
-                        Console.WriteLine("\n\n" + weapon + " 구매가 완료되었습니다.");
+                        Console.WriteLine("\n\n" + (GameManager.weapon.Name) + " 구매가 완료되었습니다.");
                     }
                     else 
                     {
