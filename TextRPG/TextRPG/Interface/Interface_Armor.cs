@@ -8,10 +8,10 @@ namespace TextRPG.Interface
 {
     public interface IArmor
     {
-        string Name { get; } // 방어구 이름
-        string Type { get; } // 종류
-        string AbleJob { get; } // 착용 가능 직업
-        int ArmorDefence { get; } // 방어력
-        int ArmorPrice { get; } // 가격
+        public string Name { get; } // 방어구 이름
+        public string Type { get; } // 종류
+        public string AbleJob { get; } // 착용 가능 직업
+        public int ArmorDefence { get; } // 방어력
+        public int ArmorPrice { get; } // 가격
     }
 }
