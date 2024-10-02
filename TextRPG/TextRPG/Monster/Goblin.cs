@@ -15,33 +15,33 @@ namespace TextRPG
         {
             Level = level;
             Name = name;
-            (int Health, int Attack, int Defence) info = GetStatsByLevel(level);
+            (int Health, int Attack, int Defence, int exp) info = GetStatsByLevel(level);
 
             Health = info.Health;
             Attack = info.Attack;
-            Defence = info.Defence; 
-            
-
+            Defence = info.Defence;
+            Exp = info.exp;
         }
-        int[] level = { 1, 2, 3, 4 };
-        int[] health = { 50, 70, 100, 150 };
-        int[] attack = { 10, 20, 30, 40 };
-        int[] defence = { 5, 10, 15, 20 };
 
-        private static (int Health, int Attack, int Defence) GetStatsByLevel(int level)
+        //int[] level = { 1, 2, 3, 4 };
+        //int[] health = { 50, 70, 100, 150 };
+        //int[] attack = { 10, 20, 30, 40 };
+        //int[] defence = { 5, 10, 15, 20 };
+
+        private (int Health, int Attack, int Defence, int exp) GetStatsByLevel(int level)
         {
             switch (level)
             {
                 case 1:
-                    return (50, 10, 5);
+                    return (50, 10, 5, 1);
                 case 2:
-                    return (70, 20, 10);
+                    return (70, 20, 10, 2);
                 case 3:
-                    return (100, 30, 15);
+                    return (100, 30, 15, 3);
                 case 4:
-                    return (150, 40, 20);
+                    return (150, 40, 20, 4);
                 default:
-                    return (0, 0, 0); // 유효하지 않은 레벨의 경우 기본값
+                    return (0, 0, 0, 0); // 유효하지 않은 레벨의 경우 기본값
             }
         }
        

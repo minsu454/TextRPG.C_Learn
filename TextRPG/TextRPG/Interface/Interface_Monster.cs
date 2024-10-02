@@ -16,6 +16,7 @@ namespace TextRPG
         int Health { get; set; }
         int Attack { get; set; }
         int Defence { get; set; }
+        int Exp { get; set; }
         bool IsDead { get; }
         void TakeDamage(int damage);
     }
