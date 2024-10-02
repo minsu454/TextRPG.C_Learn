@@ -1,7 +1,7 @@
 namespace TextRPG
 {
         
-    public class IronSword : IWeapon
+    public class Weapon : IWeapon
     {
         public string Name { get; }
         public string Type { get; }
@@ -9,67 +9,13 @@ namespace TextRPG
         public int WeaponAttack { get; set; }
         public int WeaponPrice { get; set; }
 
-        public IronSword(string name, string sword, string warrior)
+        public Weapon(string name, string type, string ablejob, int weaponAttack, int weaponPrice)
         {
-            Name = name;
-            Type = sword;
-            AbleJob = warrior;
-            WeaponAttack = 10; // 기본 공격력
-            WeaponPrice = 100; // 기본 가격
-        }
-    }
-
-    public class WoodStaff : IWeapon
-    {
-        public string Name { get; }
-        public string Type { get; }
-        public string AbleJob { get; }
-        public int WeaponAttack { get; set; }
-        public int WeaponPrice { get; set; }
-
-        public WoodStaff(string name, string staff, string magician)
-        {
-            Name = name;
-            Type = staff;
-            AbleJob = magician;
-            WeaponAttack = 40; // 기본 공격력
-            WeaponPrice = 130; // 기본 가격
-        }
-    }
-
-    public class WoodBow : IWeapon
-    {
-        public string Name { get; }
-        public string Type { get; }
-        public string AbleJob { get; }
-        public int WeaponAttack { get; set; }
-        public int WeaponPrice { get; set; }
-
-        public WoodBow(string name, string bow, string archer)
-        {
-            Name = name;
-            Type = bow;
-            AbleJob = archer;
-            WeaponAttack = 30; // 기본 공격력
-            WeaponPrice = 120; // 기본 가격
-        }
-    }
-
-    public class Shuriken : IWeapon
-    {
-        public string Name { get; }
-        public string Type { get; }
-        public string AbleJob { get; }
-        public int WeaponAttack { get; set; }
-        public int WeaponPrice { get; set; }
-
-        public Shuriken(string name, string dart, string thief)
-        {
-            Name = name;
-            Type = dart;
-            AbleJob = thief;
-            WeaponAttack = 20; // 기본 공격력
-            WeaponPrice = 110; // 기본 가격
+            Name = name; // 아이템 이름
+            Type = type; // 아이템 타입
+            AbleJob = ablejob; // 착용 가능 직업
+            WeaponAttack = weaponAttack; // 기본 공격력
+            WeaponPrice = weaponPrice; // 기본 가격
         }
     }
 } 
