@@ -5,7 +5,7 @@
         public override void Load()
         {
             Console.WriteLine($"현재 체력: {GameManager.player!.playerCurHealth}");  //플레이어의 현재 체력
-            Console.WriteLine("휴식하시겠습니까?");
+            Console.WriteLine("휴식하시겠습니까? 가격 : -300 G");
 
             ChooseChoice();
 

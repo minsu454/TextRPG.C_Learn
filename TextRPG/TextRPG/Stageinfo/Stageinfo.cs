@@ -3,6 +3,7 @@
     public class StageInfo
     {
         public List<Stage> stages = new List<Stage>();
+
         public StageInfo()
         {
             stages.Add(new Stage(500, 1, 2));  // 스테이지 1
@@ -11,6 +12,7 @@
             stages.Add(new Stage(2000, 4, 6)); // 스테이지 4
             stages.Add(new Stage(3000, 5, 7)); // 스테이지 5
         }
+
         public class Stage
         {
             public int gold;
