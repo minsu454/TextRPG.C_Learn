@@ -14,8 +14,9 @@
         Quest = 6,          //퀘스트
         Dungeon = 7,        //던전
         Rest = 8,           //휴식
-        Save = 9,           //저장
-        StoreWeapon = 10,
-        StoreArmor = 11,
+        Gambling = 9,       //도박
+        Save = 10,          //저장
+        StoreWeapon = 11,
+        StoreArmor = 12,
     }
 }
