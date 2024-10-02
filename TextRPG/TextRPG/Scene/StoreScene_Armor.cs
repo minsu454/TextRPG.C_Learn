@@ -8,9 +8,11 @@ namespace TextRPG.Scene
 {
     public class StoreScene_Armor : BaseScene
     {
+        public List<string> Itemlist = new List<string>();
+
         public override void Load()
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("방어구 상점");
             Console.WriteLine("\n1. 철갑옷\n2. 로브\n3. 천옷\n4. 도복\n5. 나가기\n");
 
@@ -22,23 +24,23 @@ namespace TextRPG.Scene
         {
             int input = Input.InputKey(5);
 
-            Console.WriteLine("\n구매하시겠습니까?");
+            Console.WriteLine("\n\n구매하시겠습니까?\n");
             {                
                 if (input == 1)
                 {
-                    Buyitem();
+                    Buyitem("철갑옷");
                 }                
                 else if (input == 2)
                 {
-                    Buyitem();
+                    Buyitem("로브");
                 }
                 else if (input == 3)
                 {
-                    Buyitem();
+                    Buyitem("천옷");
                 }
                 else if (input == 4)
                 {
-                    Buyitem();
+                    Buyitem("도복");
                 }
                 else if (input == 5)
                 {
@@ -46,17 +48,19 @@ namespace TextRPG.Scene
                 }
             }
         }
-        public void Buyitem()
+        public void Buyitem(string itemname)
         {
             int input = Input.Selection(1, "예", "아니오");
             if (input == 1)
             {
-                Console.WriteLine("\n구매가 완료되었습니다.");
-                //GameManager.player.List<Item> = add();
+                Itemlist.Add(itemname);
+                Console.WriteLine("\n\n" + itemname + " 구매가 완료되었습니다.");
+                Thread.Sleep(500);
             }
             else if (input == 2)
             {
                 Console.WriteLine("\n구매를 취소하였습니다.");
+                Thread.Sleep(500);
             }
         }
     }
