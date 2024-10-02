@@ -70,11 +70,13 @@ namespace TextRPG
                 default:
                     throw new NullReferenceException(playerJob);
             }
+
+            Console.WriteLine("Level Up!!");
         }
 
         public void SetMaxExp()
         {
-            playerMaxExp = playerMaxExp + (level * 10);
+            playerMaxExp += 10;
         }
 
         public void Save()
