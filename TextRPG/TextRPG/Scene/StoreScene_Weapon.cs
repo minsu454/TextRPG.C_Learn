@@ -8,8 +8,6 @@ namespace TextRPG.Scene
 {
     public class StoreScene_Weapon : BaseScene
     {
-        public List<string> Itemlist = new List<string>();
-
         public override void Load()
         {
             //Console.Clear();
@@ -28,19 +26,19 @@ namespace TextRPG.Scene
             {
                 if (input == 1)
                 {
-                    Buyitem("강철검");
+                    Buyitem(0);
                 }
                 else if (input == 2)
                 {
-                    Buyitem("나무스태프");
+                    Buyitem(1);
                 }
                 else if (input == 3)
                 {
-                    Buyitem("목궁");
+                    Buyitem(2);
                 }
                 else if (input == 4)
                 {
-                    Buyitem("수리검");
+                    Buyitem(3);
                 }
                 else if (input == 5)
                 {
@@ -48,17 +46,18 @@ namespace TextRPG.Scene
                 }
             }
         }
-        public void Buyitem(string itemname) 
+        public void Buyitem(int index) 
         {
             int input = Input.Selection(1, "예", "아니오");
             if (input == 1)
             {
-                if (GameManager.player.playerGold >= GameManager.weapon.WeaponPrice) // 오류
+                Weapon weapon = GameManager.weapondb[index];
+                if (GameManager.player.playerGold >= GameManager.weapon.WeaponPrice)
                 {
                     if (GameManager.player.playerJob == GameManager.weapon.AbleJob)
                     {
-                        Itemlist.Add(itemname);
-                        Console.WriteLine("\n\n" + itemname + " 구매가 완료되었습니다.");
+                        
+                        Console.WriteLine("\n\n" + weapon + " 구매가 완료되었습니다.");
                     }
                     else 
                     {

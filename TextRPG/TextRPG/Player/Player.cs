@@ -22,8 +22,9 @@ namespace TextRPG
         public int playerGold;
 
         public List<(QuestNameType, QuestStateType, int)> questList = new List<(QuestNameType, QuestStateType, int)>();
-        public List<string> itemlist = new List<string>();
-        
+        public static List<Weapon> weapondb;
+        public static List<Armor> armordb;
+
         public Player(string name, string job, int attack, int defense, int maxHealth, int maxExp, int gold)
         {
             level = 1;

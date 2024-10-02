@@ -28,19 +28,19 @@ namespace TextRPG.Scene
             {                
                 if (input == 1)
                 {
-                    Buyitem("철갑옷");
+                    Buyitem(0);
                 }                
                 else if (input == 2)
                 {
-                    Buyitem("로브");
+                    Buyitem(1);
                 }
                 else if (input == 3)
                 {
-                    Buyitem("천옷");
+                    Buyitem(2);
                 }
                 else if (input == 4)
                 {
-                    Buyitem("도복");
+                    Buyitem(3);
                 }
                 else if (input == 5)
                 {
@@ -48,13 +48,28 @@ namespace TextRPG.Scene
                 }
             }
         }
-        public void Buyitem(string itemname)
+        public void Buyitem(int index)
         {
             int input = Input.Selection(1, "예", "아니오");
             if (input == 1)
             {
-                itemlist.Add(itemname);
-                Console.WriteLine("\n\n" + itemname + " 구매가 완료되었습니다.");
+                Armor armor = GameManager.armordb[index];
+                if (GameManager.player.playerGold >= GameManager.armor.ArmorPrice)
+                {
+                    if (GameManager.player.playerJob == GameManager.armor.AbleJob)
+                    {
+                        
+                        Console.WriteLine("\n\n" + armor + " 구매가 완료되었습니다."); // 구매 조건이 충족되면 아이템이 구매되고 인벤토리로 간다. // + + 안에 아이템 이름이 들어간다.
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n\n구매할 수 없습니다.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\n\n구매할 수 없습니다.");
+                }
                 Thread.Sleep(500);
             }
             else if (input == 2)
