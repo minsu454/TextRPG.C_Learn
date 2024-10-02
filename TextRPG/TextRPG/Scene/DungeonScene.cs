@@ -15,6 +15,7 @@ namespace TextRPG
         private int MonsterIndex = 0;
         private bool isClear = false;
         private int totalExp = 0;
+        private const int plusMp = 5;
 
         public override void Load()
         {
@@ -89,7 +90,7 @@ namespace TextRPG
                 int i;
                 for (i = 0; i < skillList.Count; i++)
                 {
-                    Console.WriteLine($"{i + 1}. {skillList[i].Name}");
+                    Console.WriteLine($"{i + 1}. {skillList[i].Name} [-{skillList[i].Mp} Mp]");
                 }
 
                 Console.WriteLine($"{i + 1}. 돌아가기\n");
@@ -249,7 +250,7 @@ namespace TextRPG
             Console.WriteLine("\n\n[내정보]\n");
             Console.WriteLine($"Lv. {player.level} {player.playerName} {player.playerJob}");
             Console.WriteLine($"Hp {player.playerCurHealth} / {player.playerMaxHealth}");
-            Console.WriteLine($"Mp {player.playerCurMp} / {player.playerMaxMp}\n");
+            Console.WriteLine($"Mp {player.playerCurMp} / {player.playerMaxMp}      (+{plusMp})\n");
         }
 
         /// <summary>
@@ -308,7 +309,7 @@ namespace TextRPG
         /// </summary>
         public void EndRound()
         {
-            player.PlusMp(5);
+            player.PlusMp(plusMp);
         }
 
         /// <summary>

@@ -7,10 +7,15 @@ namespace TextRPG
         /// <summary>
         /// 스크린에 색 글씨 띄워주는 함수
         /// </summary>
-        public static void ColorPrintScreen(ConsoleColor color, string s)
+        public static void ColorPrintScreen(ConsoleColor color, string s, bool isLine = true)
         {
             Console.ForegroundColor = color;
-            Console.WriteLine(s);
+
+            if(isLine)
+                Console.WriteLine(s);
+            else
+                Console.Write(s);
+
             Console.ResetColor();
         }
 
