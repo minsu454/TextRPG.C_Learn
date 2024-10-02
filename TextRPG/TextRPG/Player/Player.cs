@@ -20,6 +20,9 @@ namespace TextRPG
         public int playerMaxExp;
 
         public int playerGold;
+        
+        public int playerCritical;
+        public int playerDodge;
 
         public List<(QuestNameType, QuestStateType, int)> questList = new List<(QuestNameType, QuestStateType, int)>();
 
@@ -27,6 +30,8 @@ namespace TextRPG
         {
             level = 1;
             StageNum = 1;
+            playerCritical = 15;
+            playerDodge = 10;
             playerName = name;
             playerJob = job;
             playerAttack = attack;
@@ -36,6 +41,7 @@ namespace TextRPG
             playerCurExp = 0;
             playerMaxExp = maxExp;
             playerGold = gold;
+
         }
 
         public void GetExp(int exp)
