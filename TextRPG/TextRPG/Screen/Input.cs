@@ -15,6 +15,9 @@ namespace TextRPG
 >> ";
         #endregion
 
+        /// <summary>
+        /// 문자열 배열 출력해준 후 그 입력된 범위 내에 값을 반환해주는 함수
+        /// </summary>
         public static int Selection(int startIdx, params string[] choiceArr)
         {
             for (int i = 0; i < choiceArr.Length; i++)

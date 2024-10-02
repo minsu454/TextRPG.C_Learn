@@ -1,5 +1,8 @@
 ﻿namespace TextRPG
 {
+    /// <summary>
+    /// 이벤트 타입
+    /// </summary>
     public enum GameEventType
     {
         None = 0,       
