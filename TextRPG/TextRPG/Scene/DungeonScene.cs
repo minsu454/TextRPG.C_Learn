@@ -9,14 +9,16 @@ namespace TextRPG
         List<Monster> monsters = GameManager.Stage.monsters;
 
         List<Stage> stages = GameManager.Stage.stages;
+        Random random = new Random();
 
         private int MonsterIndex = 0;
         private bool isClear = false;
-        private int exp = 0;
+        private int totalExp = 0;
 
         public override void Load()
         {
             isClear = false;
+            totalExp = 0;
 
             Print.ColorPrintScreen(ConsoleColor.Red, "던전에 오신 여러분 환영합니다.");
             Print.ColorPrintScreen(ConsoleColor.Red, $"이제 전투를 시작할 수 있습니다. [현재 : {GameManager.player.StageNum}층]\n");
@@ -66,6 +68,9 @@ namespace TextRPG
         {
             int input = 0;
             Player player = GameManager.player;
+            
+            // 공격력 10% +- 오차범위 랜덤
+            int atkdamage = random.Next(player.playerAttack - player.playerAttack / 10, (player.playerAttack + player.playerAttack / 10) + 1);
 
             while (true)
             {
@@ -76,7 +81,7 @@ namespace TextRPG
 
                 if (input == 1)
                 {
-                    NormalAttack();
+                    NormalAttack(atkdamage);
                     return;
                 }
 
@@ -98,25 +103,23 @@ namespace TextRPG
                     continue;
                 }
 
-                if (0 > player.playerCurMana - skillList[input - 1].Mana)
+                if (0 <= player.playerCurMana - skillList[input - 1].Mana)
+                {
+                    SkillAttack(skillList[input - 1], atkdamage);
+                    break;
+                }
+                else
                 {
                     Print.ColorPrintScreen(ConsoleColor.Red, "마나가 없습니다.");
-                    continue;
                 }
-
-                SkillAttack(skillList[input - 1]);
             }
         }
 
-        private void NormalAttack() // 플레이어 기본 공격
+        private void NormalAttack(int atkdamage, string skillName = "공격") // 플레이어 기본 공격
         {
             Player player = GameManager.player;
-            Random random = new Random();
-
+            
             int idx = AttackMonsterIdx();
-
-            // 공격력 10% +- 오차범위 랜덤
-            int atkdamage = random.Next(player.playerAttack - player.playerAttack / 10, (player.playerAttack + player.playerAttack / 10) + 1);
 
             bool dodge = random.Next(100) < player.playerDodge; // 빗나갈 확률 , player 기본값 10
 
@@ -126,7 +129,7 @@ namespace TextRPG
                 return; // 공격 중단
             }
 
-            Print.PrintScreenAndSleep($"{player.playerName} 의 공격!\n");
+            Print.PrintScreenAndSleep($"{player.playerName} 의 {skillName}!\n");
 
             bool critical = random.Next(100) < player.playerCritical; // 치명타 확률 , player 기본값 15
 
@@ -136,31 +139,30 @@ namespace TextRPG
                 Print.ColorPrintScreen(ConsoleColor.Red, "치명타!!");
             }
 
-            Console.WriteLine($"Lv.{monsters[idx].Level} {monsters[idx].Name} 을(를) 맞췄습니다. [데미지 : {atkdamage}]");
-
-            monsters[idx].TakeDamage(atkdamage);
-
-            if (monsters[idx].IsDead)
-            {
-                Print.ColorPrintScreen(ConsoleColor.DarkGray, $"Hp {monsters[idx].Health + atkdamage} -> Dead\n");
-
-                exp += monsters[idx].Exp;
-
-                GameManager.Event.Dispatch(GameEventType.KillMonster, new KillMonsterEventArgs()
-                {
-                    Name = $"{monsters[idx].Name}",
-                    Count = 1
-                });
-            }
-            else
-            {
-                Console.WriteLine($"Hp {monsters[idx].Health + atkdamage} -> {monsters[idx].Health}\n");
-            }
+            PrintGetMonsterDamage(idx, atkdamage);
         }
-
-        public void SkillAttack(ISkill skill) // 플레이어 공격 함수
+        
+        /// <summary>
+        /// 스킬 공격 함수
+        /// </summary>
+        public void SkillAttack(ISkill skill, int attack)
         {
+            if (skill.TargetType == TargetType.Single)
+            {
+                NormalAttack(skill.Use(attack), skill.Name);
+            }
+            else 
+            {
+                for (int i = 0; i < monsters.Count; i++)
+                {
+                    if (monsters[i].IsDead)
+                        continue;
 
+                    Print.PrintScreenAndSleep($"{GameManager.player.playerName} 의 {skill.Name}!\n");
+
+                    PrintGetMonsterDamage(i, skill.Use(attack));
+                }
+            }
         }
 
 
@@ -212,7 +214,7 @@ namespace TextRPG
                 Console.WriteLine($"{player.playerName}이(가) 쓰러졌습니다!\n");
                 Console.WriteLine("마지막으로 저장된 곳으로 이동하시겠습니까?\n");
 
-                int input = Input.Selection(1, "예.", "아니오");
+                int input = Input.Selection(1, "예.", "아니오.");
 
                 if (input == 1)
                 {
@@ -253,6 +255,35 @@ namespace TextRPG
             Console.WriteLine($"Hp {player.playerCurHealth} / {player.playerMaxHealth}\n");
         }
 
+        /// <summary>
+        /// 몬스터 데미지 받는 출력 함수
+        /// </summary>
+        private void PrintGetMonsterDamage(int idx, int atkdamage)
+        {
+            Console.WriteLine($"Lv.{monsters[idx].Level} {monsters[idx].Name} 을(를) 맞췄습니다. [데미지 : {atkdamage}]");
+            monsters[idx].TakeDamage(atkdamage);
+
+            if (monsters[idx].IsDead)
+            {
+                Print.ColorPrintScreen(ConsoleColor.DarkGray, $"Hp {monsters[idx].Health + atkdamage} -> Dead\n");
+
+                totalExp += monsters[idx].Exp;
+
+                GameManager.Event.Dispatch(GameEventType.KillMonster, new KillMonsterEventArgs()
+                {
+                    Name = $"{monsters[idx].Name}",
+                    Count = 1
+                });
+            }
+            else
+            {
+                Console.WriteLine($"Hp {monsters[idx].Health + atkdamage} -> {monsters[idx].Health}\n");
+            }
+        }
+
+        /// <summary>
+        /// 대상을 선택하는 함수
+        /// </summary>
         public int AttackMonsterIdx()
         {
             int idx = 0;
@@ -289,7 +320,7 @@ namespace TextRPG
             if (GameManager.player.StageNum < GameManager.Stage.stages.Count)
                 GameManager.player.StageNum++;
 
-            GameManager.player.GetExp(exp);
+            GameManager.player.GetExp(totalExp);
 
             Thread.Sleep(500);
         }
