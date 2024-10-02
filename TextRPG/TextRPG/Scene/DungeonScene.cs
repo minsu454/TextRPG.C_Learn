@@ -1,4 +1,5 @@
-﻿using static TextRPG.StageInfo;
+﻿using System.Numerics;
+using static TextRPG.StageInfo;
 
 namespace TextRPG
 {
@@ -125,21 +126,28 @@ namespace TextRPG
 
             Console.Clear();
 
+            NormalAttack(player, idx, atkdamage); // NormalAttack 테스트용
+        }
+
+
+        private void NormalAttack(Player player, int idx, int atkdamage) // 플레이어 기본 공격
+        {
+                 
             Random random = new Random();
 
-            bool miss = random.Next(100) < 10; // 빗나갈 확률
-            
-            if (miss) // 공격이 빗나갔을때
+            bool dodge = random.Next(100) < player.playerDodge; // 빗나갈 확률 , player 기본값 10
+
+            if (dodge) // 공격이 빗나갔을때
             {
                 Console.WriteLine($"{player.playerName} 의 공격이 빗나갔습니다!");
-                
+
                 return; // 공격 중단
             }
 
-            bool critical = random.Next(100) < 15; // 치명타 확률
+            bool critical = random.Next(100) < player.playerCritical; // 치명타 확률 , player 기본값 15
 
             int damagelog = atkdamage; // 데미지 값 반영
-            
+
             Print.PrintScreenAndSleep($"{player.playerName} 의 공격!\n");
 
             if (critical) // 치명타가 발생했을때
@@ -154,7 +162,7 @@ namespace TextRPG
 
             if (monsters[idx].Health <= 0)
             {
-                Print.ColorPrintScreen(ConsoleColor.DarkGray, $"Hp {mobCurHealth} -> Dead\n");
+                Print.ColorPrintScreen(ConsoleColor.DarkGray, $"Hp {monsters[idx].Health + damagelog} -> Dead\n");
 
                 exp += monsters[idx].Exp;
 
@@ -166,9 +174,10 @@ namespace TextRPG
             }
             else
             {
-                Console.WriteLine($"Hp {mobCurHealth} -> {monsters[idx].Health}\n");
+                Console.WriteLine($"Hp {monsters[idx].Health + damagelog} -> {monsters[idx].Health}\n");
             }
         }
+
 
         public void MonsterAttack() // 몹 공격 함수
         {
