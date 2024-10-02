@@ -8,7 +8,7 @@ namespace TextRPG.Scene
 {
     public class StoreScene_Armor : BaseScene
     {
-        public List<string> Itemlist = new List<string>();
+        public List<string> itemlist = new List<string>();
 
         public override void Load()
         {
@@ -53,7 +53,7 @@ namespace TextRPG.Scene
             int input = Input.Selection(1, "예", "아니오");
             if (input == 1)
             {
-                Itemlist.Add(itemname);
+                itemlist.Add(itemname);
                 Console.WriteLine("\n\n" + itemname + " 구매가 완료되었습니다.");
                 Thread.Sleep(500);
             }

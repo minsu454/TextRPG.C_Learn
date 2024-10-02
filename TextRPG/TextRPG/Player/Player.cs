@@ -12,7 +12,7 @@ namespace TextRPG
         public string playerName;
         public string playerJob;
 
-        public int playerAttack;  
+        public int playerAttack;
         public int playerDefense;
         public int playerCurHealth;
         public int playerMaxHealth;
@@ -22,7 +22,8 @@ namespace TextRPG
         public int playerGold;
 
         public List<(QuestNameType, QuestStateType, int)> questList = new List<(QuestNameType, QuestStateType, int)>();
-
+        public List<string> itemlist = new List<string>();
+        
         public Player(string name, string job, int attack, int defense, int maxHealth, int maxExp, int gold)
         {
             level = 1;
