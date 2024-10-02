@@ -10,6 +10,8 @@ namespace TextRPG
             Console.Clear();
             Console.WriteLine("플레이어 상태창");
             Console.WriteLine($"이름: {GameManager.player.playerName}");
+            Console.WriteLine($"레벨: {GameManager.player.level}");
+            Console.WriteLine($"경험치: {GameManager.player.playerCurExp}/{GameManager.player.playerMaxExp}");
             Console.WriteLine($"직업: {GameManager.player.playerJob}");
             Console.WriteLine($"공격력: {GameManager.player.playerAttack}");
             Console.WriteLine($"방어력: {GameManager.player.playerDefense}");

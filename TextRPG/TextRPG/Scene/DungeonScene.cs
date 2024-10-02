@@ -5,6 +5,7 @@
         List<Monster> monsters = GameManager.Stage.monsters;
         private int MonsterIndex = 0;
         private bool isClear = false;
+        private int exp = 0;
 
         public override void Load()
         {
@@ -86,13 +87,19 @@
 
                 if (player.playerCurHealth <= 0) // 플레이어가 죽었는지 확인
                 {
-                    Console.WriteLine($"{player.playerName}이(가) 쓰러졌습니다!");
+                    Console.WriteLine($"{player.playerName}이(가) 쓰러졌습니다!\n");
 
-                    Console.WriteLine("\n1. 나가기\n");
+                    Console.WriteLine("마지막으로 저장된 곳으로 이동하시겠습니까?\n");
+                    input = Input.Selection(1, "예.", "아니오");
 
-                    GameManager.player = GameManager.Save.Load<Player>();
-
-                    input = Input.InputKey(1, 1);
+                    if (input == 1)
+                    {
+                        GameManager.player = GameManager.Save.Load<Player>();
+                    }
+                    else
+                    {
+                        GameManager.isRun = false;
+                    }
                     break;
                 }
             }
@@ -118,6 +125,9 @@
             if (monsters[index].Health <= 0)
             {
                 Print.ColorPrintScreen(ConsoleColor.DarkGray, $"Hp {mobCurHealth} -> Dead\n");
+
+                exp += monsters[index].Exp;
+
                 GameManager.Event.Dispatch(GameEventType.KillMonster, new KillMonsterEventArgs()
                 {
                     Name = $"{monsters[index].Name}",

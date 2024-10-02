@@ -12,6 +12,7 @@
         public int Health { get; set; }
         public int Attack { get; set; }
         public int Defence { get; set; }
+        public int Exp { get; set; }
         public bool IsDead => Health <= 0;
         
         // 몬스터가 데미지를 받았을 경우에 나오는 결과
