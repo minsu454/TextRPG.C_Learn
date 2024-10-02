@@ -19,7 +19,7 @@ namespace TextRPG
             Console.WriteLine($"소지금: {GameManager.player.playerGold}G");
             Console.WriteLine("=========================");
 
-            Console.WriteLine("아무키나 누르면 로비로 이동합니다.");
+            Print.ColorPrintScreen(ConsoleColor.Red, "아무키나 누르면 로비로 이동합니다.");
             Console.ReadKey(true);
             GameManager.Scene.CloseScene(); 
         }

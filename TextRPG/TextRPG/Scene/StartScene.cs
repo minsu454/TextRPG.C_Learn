@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Text;
 using System.Xml.Linq;
 
@@ -13,7 +14,7 @@ namespace TextRPG
 
             GameManager.Scene.OpenScene(SceneType.Lobby);
         }
-
+        
         public void LoadPlayer()
         {
             if (GameManager.Save.CanLoadFile())
@@ -21,9 +22,12 @@ namespace TextRPG
                 Console.WriteLine("전에 플레이하던 데이터가 있습니다.");
                 Console.WriteLine("불러오시겠습니까?");
 
-                int input = Input.Selection(1, "예.", "아니오.");
+                Print.ColorPrintScreen(ConsoleColor.Green, "1. 예");
+                Print.ColorPrintScreen(ConsoleColor.Red, "2. 아니오");
 
-                if (input == 1)
+                string Input = Console.ReadLine(); 
+
+                if (int.TryParse(Input, out int input) && input == 1)
                 {
                     GameManager.player = GameManager.Save.Load<Player>();
                     GameManager.player.Load();
@@ -34,6 +38,7 @@ namespace TextRPG
             Console.Clear();
             CreatePlayer();
         }
+
 
         public void CreatePlayer()
         {
