@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,8 +9,6 @@ namespace TextRPG.Scene
 {
     public class StoreScene_Weapon : BaseScene
     {
-        public List<string> Itemlist = new List<string>();
-
         public override void Load()
         {
             //Console.Clear();
@@ -28,19 +27,19 @@ namespace TextRPG.Scene
             {
                 if (input == 1)
                 {
-                    Buyitem("강철검");
+                    Buyitem(0);
                 }
                 else if (input == 2)
                 {
-                    Buyitem("나무스태프");
+                    Buyitem(1);
                 }
                 else if (input == 3)
                 {
-                    Buyitem("목궁");
+                    Buyitem(2);
                 }
                 else if (input == 4)
                 {
-                    Buyitem("수리검");
+                    Buyitem(3);
                 }
                 else if (input == 5)
                 {
@@ -48,17 +47,21 @@ namespace TextRPG.Scene
                 }
             }
         }
-        public void Buyitem(string itemname) 
+        public void Buyitem(int index) 
         {
             int input = Input.Selection(1, "예", "아니오");
             if (input == 1)
             {
-                if (GameManager.player.playerGold >= GameManager.weapon.WeaponPrice) // 오류
+                Weapon weapon = GameManager.weapondb[index];
+                if (GameManager.player.playerGold >= GameManager.weapon.WeaponPrice)
                 {
                     if (GameManager.player.playerJob == GameManager.weapon.AbleJob)
                     {
-                        Itemlist.Add(itemname);
-                        Console.WriteLine("\n\n" + itemname + " 구매가 완료되었습니다.");
+<<<<<<< Updated upstream
+                        Console.WriteLine("\n\n" + (GameManager.weapon.Name) + " 구매가 완료되었습니다.");
+=======
+                        Console.WriteLine("\n\n" + (GameManager.weapon.Name) + " 구매가 완료되었습니다."); // 구매 조건이 충족되면 아이템이 구매되고 인벤토리로 간다. // + + 안에 구매한 아이템 이름이 들어간다.
+>>>>>>> Stashed changes
                     }
                     else 
                     {

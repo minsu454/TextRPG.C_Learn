@@ -7,7 +7,7 @@ using TextRPG.Interface;
 
 namespace TextRPG
 {
-    public class IronArmor : IArmor
+    public class Armor : IArmor
     {
         public string Name { get; }
         public string Type { get; }
@@ -15,66 +15,13 @@ namespace TextRPG
         public int ArmorDefence { get; }
         public int ArmorPrice { get; }
 
-        public IronArmor(string name, string ironArmor, string warrior)
+        public Armor(string name, string type, string ablejob, int armorDefence, int armorPrice)
         {
-            Name = name;
-            Type = ironArmor;
-            AbleJob = warrior;
-            ArmorDefence = 15;
-            ArmorPrice = 120;
-        }
-    }
-    public class Robe : IArmor
-    {
-        public string Name { get; }
-        public string Type { get; }
-        public string AbleJob { get; }
-        public int ArmorDefence { get; }
-        public int ArmorPrice { get; }
-
-        public Robe(string name, string gown, string magician)
-        {
-            Name = name;
-            Type = gown;
-            AbleJob = magician;
-            ArmorDefence = 20;
-            ArmorPrice = 130;
-        }
-    }
-
-    public class Cloth : IArmor
-    {
-        public string Name { get; }
-        public string Type { get; }
-        public string AbleJob { get; }
-        public int ArmorDefence { get; }
-        public int ArmorPrice { get; }
-
-        public Cloth(string name, string cloth, string archer)
-        {
-            Name = name;
-            Type = cloth;
-            AbleJob = archer;
-            ArmorDefence = 10;
-            ArmorPrice = 110;
-        }
-    }
-
-    public class Suit : IArmor
-    {
-        public string Name { get; }
-        public string Type { get; }
-        public string AbleJob { get; }
-        public int ArmorDefence { get; }
-        public int ArmorPrice { get; }
-
-        public Suit(string name, string uniform, string thief)
-        {
-            Name = name;
-            Type = uniform;
-            AbleJob = thief;
-            ArmorDefence = 25;
-            ArmorPrice = 140;
+            Name = name; // 아이템 이름
+            Type = type; // 아이템 타입
+            AbleJob = ablejob; // 착용 가능 직업
+            ArmorDefence = armorDefence; // 기본 방어력
+            ArmorPrice = armorPrice; // 기본 가격
         }
     }
 }
