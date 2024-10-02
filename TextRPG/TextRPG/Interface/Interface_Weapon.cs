@@ -8,16 +8,10 @@ namespace TextRPG
 {
     public interface IWeapon
     {
-        //무기 이름
-        //종류
-        //착용 가능 직업
-        //공격력
-        //가격
-
-        string Name { get; }
-        string Type { get; }
-        string AbleJob { get; }
-        int WeaponAttack { get; }
-        int WeaponPrice { get; }
+        string Name { get; }  // 무기 이름
+        string Type { get; } // 종류
+        string AbleJob { get; } // 착용 가능 직업
+        int WeaponAttack { get; } // 공격력
+        int WeaponPrice { get; } // 가격
     }
 }

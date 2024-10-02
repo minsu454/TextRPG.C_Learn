@@ -22,21 +22,21 @@ namespace TextRPG.Scene
         {
             int input = Input.InputKey(5);
 
+            Console.WriteLine("\n구매하시겠습니까?");
             {
-                Console.WriteLine("\n구매하시겠습니까?");
                 if (input == 1)
                 {
                     Buyitem();
                 }
-                if (input == 2)
+                else if (input == 2)
                 {
                     Buyitem();
                 }
-                if (input == 3)
+                else if (input == 3)
                 {
                     Buyitem();
                 }
-                if (input == 4)
+                else if (input == 4)
                 {
                     Buyitem();
                 }
@@ -52,7 +52,7 @@ namespace TextRPG.Scene
             if (input == 1)
             {
                 Console.WriteLine("\n구매가 완료되었습니다.");
-                GameManager.<ItemList>;
+                //GameManager.<ItemList>;
             }
             else if (input == 2)
             {
