@@ -125,7 +125,9 @@
             if (monsters[index].Health <= 0)
             {
                 Print.ColorPrintScreen(ConsoleColor.DarkGray, $"Hp {mobCurHealth} -> Dead\n");
-                exp += monsters[index].exp;
+
+                exp += monsters[index].Exp;
+
                 GameManager.Event.Dispatch(GameEventType.KillMonster, new KillMonsterEventArgs()
                 {
                     Name = $"{monsters[index].Name}",
