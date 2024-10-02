@@ -18,8 +18,6 @@ namespace TextRPG
         public readonly static StageInfo Stage = new StageInfo();
 
         public static Player player;
-        public static Weapon weapon;
-        public static Armor armor;
         public static List<Weapon> weapondb;
         public static List<Armor> armordb;
                 
@@ -31,6 +29,7 @@ namespace TextRPG
             isRun = true;
             Scene.Init();
             Quest.Init();
+            ItemInit();
         }
 
         public static void ItemInit() 

@@ -29,6 +29,8 @@ namespace TextRPG
 
         public List<(QuestNameType, QuestStateType, int)> questList = new List<(QuestNameType, QuestStateType, int)>();
         public List<string> itemlist = new List<string>();
+        public List<Weapon> weapondb = new List<Weapon>();
+        public List<Armor> armordb = new List<Armor> ();
 
         public Player()
         {

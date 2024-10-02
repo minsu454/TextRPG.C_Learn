@@ -53,15 +53,11 @@ namespace TextRPG.Scene
             if (input == 1)
             {
                 Weapon weapon = GameManager.weapondb[index];
-                if (GameManager.player.playerGold >= GameManager.weapon.WeaponPrice)
+                if (GameManager.player.playerGold >= GameManager.weapondb[index].WeaponPrice)
                 {
-                    if (GameManager.player.playerJob == GameManager.weapon.AbleJob)
+                    if (GameManager.player.playerJob == GameManager.weapondb[index].AbleJob)
                     {
-<<<<<<< Updated upstream
-                        Console.WriteLine("\n\n" + (GameManager.weapon.Name) + " 구매가 완료되었습니다.");
-=======
-                        Console.WriteLine("\n\n" + (GameManager.weapon.Name) + " 구매가 완료되었습니다."); // 구매 조건이 충족되면 아이템이 구매되고 인벤토리로 간다. // + + 안에 구매한 아이템 이름이 들어간다.
->>>>>>> Stashed changes
+                        Console.WriteLine("\n\n" + (GameManager.weapondb[index].Name) + " 구매가 완료되었습니다."); // 구매 조건이 충족되면 아이템이 구매되고 인벤토리로 간다. // + + 안에 구매한 아이템 이름이 들어간다.
                     }
                     else 
                     {
