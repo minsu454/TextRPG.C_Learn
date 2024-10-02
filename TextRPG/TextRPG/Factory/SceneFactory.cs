@@ -36,6 +36,9 @@ namespace TextRPG
                 case SceneType.Quest:
                     scene = new QuestScene();
                     break;
+                case SceneType.Gambling:
+                    scene = new GamblingScene();
+                    break;
                 case SceneType.Save:
                     scene = new SaveScene();
                     break;
