@@ -66,6 +66,9 @@ namespace TextRPG
             }
         }
 
+        /// <summary>
+        /// 토탈 플레이어 공격
+        /// </summary>
         public void PlayerAttack()
         {
             int input = 0;
