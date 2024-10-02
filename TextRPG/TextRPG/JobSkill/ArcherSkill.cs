@@ -4,8 +4,8 @@
     {
         public ArcherSkill()
         {
-            skillDic.Add(SkillType.RainOfArrow, new RainOfArrow());
-            skillDic.Add(SkillType.SnipeShot, new SnipeShot());
+            skillList.Add(new RainOfArrow());
+            skillList.Add(new SnipeShot());
         }
     }
 }

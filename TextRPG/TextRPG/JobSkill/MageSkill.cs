@@ -4,8 +4,9 @@
     {
         public MageSkill()
         {
-            skillDic.Add(SkillType.Fireball, new Fireball());
-            skillDic.Add(SkillType.IceSpear, new IceSpear());
+            skillList.Add(new Fireball());
+            skillList.Add(new IceSpear());
         }
     }
 }
+ 

@@ -29,5 +29,30 @@
 
             return skill;
         }
+
+        //public static string CreateSkill(SkillType type)
+        //{
+        //    string name = null;
+
+        //    switch (type)
+        //    {
+        //        case "전사":
+        //            skill = new WarriorSkill();
+        //            break;
+        //        case "궁수":
+        //            skill = new ArcherSkill();
+        //            break;
+        //        case "도적":
+        //            skill = new RogueSkill();
+        //            break;
+        //        case "마법사":
+        //            skill = new MageSkill();
+        //            break;
+        //        default:
+        //            throw new NotImplementedException(jobName);
+        //    }
+
+        //    return skill;
+        //}
     }
 }

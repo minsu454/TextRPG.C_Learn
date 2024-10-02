@@ -18,7 +18,8 @@
 
             if (input == 1)
             {
-                GameManager.player!.playerCurHealth = GameManager.player.playerMaxHealth;
+                GameManager.player.playerCurHealth = GameManager.player.playerMaxHealth;
+                GameManager.player.playerCurMana = GameManager.player.playerMaxMana;
                 GameManager.Event.Dispatch(GameEventType.Rest, new RestEventArgs());
             }
         }

@@ -4,8 +4,8 @@
     {
         public RogueSkill()
         {
-            skillDic.Add(SkillType.AssassinBlade, new AssassinBlade());
-            skillDic.Add(SkillType.ShadowSlash, new ShadowSlash());
+            skillList.Add(new AssassinBlade());
+            skillList.Add(new ShadowSlash());
         }
     }
-}
+}   

@@ -30,6 +30,10 @@ namespace TextRPG
         public List<(QuestNameType, QuestStateType, int)> questList = new List<(QuestNameType, QuestStateType, int)>();
         public List<string> itemlist = new List<string>();
 
+        public Player()
+        {
+
+        }
         
         public Player(string name, string job, int attack, int defense, int maxHealth, int maxMana, int maxExp, int gold)
         {
@@ -49,6 +53,9 @@ namespace TextRPG
             skill = SkillFactory.CreateSkill(playerJob);
         }
 
+        /// <summary>
+        /// 플레이어가 경험치 얻는 함수
+        /// </summary>
         public void GetExp(int exp)
         {
             playerCurExp += exp;
@@ -60,6 +67,9 @@ namespace TextRPG
             }
         }
 
+        /// <summary>
+        /// 레벨업 함수
+        /// </summary>
         public void LevelUp()
         {
             level++;
@@ -85,11 +95,17 @@ namespace TextRPG
             Console.WriteLine("Level Up!!");
         }
 
+        /// <summary>
+        /// 최대 경험치 늘려주는 함수
+        /// </summary>
         public void SetMaxExp()
         {
             playerMaxExp += 10;
         }
 
+        /// <summary>
+        /// 플레이어 세이브해주는 함수
+        /// </summary>
         public void Save()
         {
             questList.Clear();
@@ -103,6 +119,14 @@ namespace TextRPG
             GameManager.Save.Save(this);
         }
 
+        public List<ISkill> Skill()
+        {
+            return skill.SkillList;
+        }
+
+        /// <summary>
+        /// 플레이어 데이터 로드해주는 함수
+        /// </summary>
         public void Load()
         {
             var dic = GameManager.Quest.QuestDic;
