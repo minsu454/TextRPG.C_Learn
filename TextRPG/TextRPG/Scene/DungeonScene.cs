@@ -196,14 +196,12 @@ namespace TextRPG
         {
             Console.Clear();
             Print.ColorPrintScreen(ConsoleColor.Green, "Win!\n");
-
             Console.WriteLine($"보상으로 {stages[GameManager.player.StageNum - 1].gold} Gold를 획득하였습니다!"); // 클리어 보상
 
             GameManager.player.playerGold += stages[GameManager.player.StageNum - 1].gold;
 
-            GameManager.player.StageNum++;
-
-            if (GameManager.player.StageNum >= 6) GameManager.player.StageNum--;
+            if (GameManager.player.StageNum < GameManager.Stage.stages.Count)
+                GameManager.player.StageNum++;
 
             GameManager.player.GetExp(exp);
 
