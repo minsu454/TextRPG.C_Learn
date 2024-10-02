@@ -28,7 +28,7 @@
 
                 GameManager.player.playerGold -= restGold;
                 GameManager.player.playerCurHealth = GameManager.player.playerMaxHealth;
-                GameManager.player.playerCurMana = GameManager.player.playerMaxMana;
+                GameManager.player.playerCurMp = GameManager.player.playerMaxMp;
                 GameManager.Event.Dispatch(GameEventType.Rest, new RestEventArgs());
             }
         }

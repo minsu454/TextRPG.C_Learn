@@ -6,7 +6,7 @@
         public string Comment => "빠르게 적의 뒤로 이동하여 공격을 가한 뒤, 다시 그림자 속으로 사라집니다.";
         public TargetType TargetType => TargetType.Single;
 
-        public int Mana => 30;
+        public int Mp => 30;
 
         public int Use(int playerAttack)
         {

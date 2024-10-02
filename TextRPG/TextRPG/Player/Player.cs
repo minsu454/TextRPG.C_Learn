@@ -17,8 +17,8 @@ namespace TextRPG
         public int playerDefense;
         public int playerCurHealth;
         public int playerMaxHealth;
-        public int playerCurMana;
-        public int playerMaxMana;
+        public int playerCurMp;
+        public int playerMaxMp;
         public int playerCurExp;
         public int playerMaxExp;
 
@@ -47,6 +47,8 @@ namespace TextRPG
             playerDefense = defense;
             playerCurHealth = maxHealth;
             playerMaxHealth = maxHealth;
+            playerCurMp = maxMana;
+            playerMaxMp = maxMana;
             playerCurExp = 0;
             playerMaxExp = maxExp;
             playerGold = gold;
@@ -101,6 +103,20 @@ namespace TextRPG
         public void SetMaxExp()
         {
             playerMaxExp += 10;
+        }
+
+        /// <summary>
+        /// 마나 채워주는 함수
+        /// </summary>
+        public void PlusMp(int mana)
+        {
+            if (playerMaxMp < playerCurMp + mana)
+            {
+                playerCurMp = playerMaxMp;
+                return;
+            }
+
+            playerCurMp += mana;
         }
 
         /// <summary>

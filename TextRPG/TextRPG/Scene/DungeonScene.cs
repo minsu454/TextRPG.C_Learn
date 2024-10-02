@@ -10,6 +10,7 @@ namespace TextRPG
 
         List<Stage> stages = GameManager.Stage.stages;
         Random random = new Random();
+        Player player;
 
         private int MonsterIndex = 0;
         private bool isClear = false;
@@ -19,9 +20,10 @@ namespace TextRPG
         {
             isClear = false;
             totalExp = 0;
+            player = GameManager.player;
 
             Print.ColorPrintScreen(ConsoleColor.Red, "던전에 오신 여러분 환영합니다.");
-            Print.ColorPrintScreen(ConsoleColor.Red, $"이제 전투를 시작할 수 있습니다. [현재 : {GameManager.player.StageNum}층]\n");
+            Print.ColorPrintScreen(ConsoleColor.Red, $"이제 전투를 시작할 수 있습니다. [현재 : {player.StageNum}층]\n");
             Console.WriteLine("1. 전투 시작");
             Console.WriteLine("2. 재정비\n");
 
@@ -43,8 +45,6 @@ namespace TextRPG
 
         public void InDungeon() // 던전 함수
         {
-            Player player = GameManager.player;
-
             if (player.playerCurHealth <= 0)
             {
                 throw new ArgumentNullException(player.playerCurHealth.ToString());
@@ -59,6 +59,7 @@ namespace TextRPG
 
                 MonsterAttack();
 
+                EndRound();
                 Print.ColorPrintScreen(ConsoleColor.DarkGreen, "아무키나 누르세요.");
                 Console.ReadKey(true);
             }
@@ -67,7 +68,6 @@ namespace TextRPG
         public void PlayerAttack()
         {
             int input = 0;
-            Player player = GameManager.player;
             
             // 공격력 10% +- 오차범위 랜덤
             int atkdamage = random.Next(player.playerAttack - player.playerAttack / 10, (player.playerAttack + player.playerAttack / 10) + 1);
@@ -76,8 +76,7 @@ namespace TextRPG
             {
                 PrintBattle();
                 input = Input.Selection(1, "공격", "스킬");
-                Console.WriteLine();
-                Console.WriteLine();
+                Console.WriteLine("\n");
 
                 if (input == 1)
                 {
@@ -93,9 +92,7 @@ namespace TextRPG
                     Console.WriteLine($"{i + 1}. {skillList[i].Name}");
                 }
 
-                Console.WriteLine($"{i + 1}. 돌아가기");
-                Console.WriteLine();
-
+                Console.WriteLine($"{i + 1}. 돌아가기\n");
                 input = Input.InputKey(i + 1);
 
                 if (input == i + 1)
@@ -103,7 +100,9 @@ namespace TextRPG
                     continue;
                 }
 
-                if (0 <= player.playerCurMana - skillList[input - 1].Mana)
+                Console.WriteLine();
+
+                if (0 <= player.playerCurMp - skillList[input - 1].Mp)
                 {
                     SkillAttack(skillList[input - 1], atkdamage);
                     break;
@@ -111,14 +110,13 @@ namespace TextRPG
                 else
                 {
                     Print.ColorPrintScreen(ConsoleColor.Red, "마나가 없습니다.");
+                    Thread.Sleep(500);
                 }
             }
         }
 
         private void NormalAttack(int atkdamage, string skillName = "공격") // 플레이어 기본 공격
         {
-            Player player = GameManager.player;
-            
             int idx = AttackMonsterIdx();
 
             bool dodge = random.Next(100) < player.playerDodge; // 빗나갈 확률 , player 기본값 10
@@ -147,18 +145,20 @@ namespace TextRPG
         /// </summary>
         public void SkillAttack(ISkill skill, int attack)
         {
+            player.playerCurMp -= skill.Mp;
+
             if (skill.TargetType == TargetType.Single)
             {
                 NormalAttack(skill.Use(attack), skill.Name);
             }
             else 
             {
+                Console.Clear();
+                Print.PrintScreenAndSleep($"{player.playerName} 의 {skill.Name}!\n");
                 for (int i = 0; i < monsters.Count; i++)
                 {
                     if (monsters[i].IsDead)
                         continue;
-
-                    Print.PrintScreenAndSleep($"{GameManager.player.playerName} 의 {skill.Name}!\n");
 
                     PrintGetMonsterDamage(i, skill.Use(attack));
                 }
@@ -186,8 +186,6 @@ namespace TextRPG
                     break;
                 }
             }
-
-            Player player = GameManager.player;
 
             int playerCurHealth = player.playerCurHealth;
 
@@ -248,11 +246,10 @@ namespace TextRPG
                 }
             }
 
-            Player player = GameManager.player;
-
             Console.WriteLine("\n\n[내정보]\n");
             Console.WriteLine($"Lv. {player.level} {player.playerName} {player.playerJob}");
-            Console.WriteLine($"Hp {player.playerCurHealth} / {player.playerMaxHealth}\n");
+            Console.WriteLine($"Hp {player.playerCurHealth} / {player.playerMaxHealth}");
+            Console.WriteLine($"Mp {player.playerCurMp} / {player.playerMaxMp}\n");
         }
 
         /// <summary>
@@ -307,22 +304,31 @@ namespace TextRPG
         }
 
         /// <summary>
+        /// 라운드가 끝났을때 호출(양쪽이 모두 공격하고 나서)
+        /// </summary>
+        public void EndRound()
+        {
+            player.PlusMp(5);
+        }
+
+        /// <summary>
         /// 던전 클리어시 호출하는 함수
         /// </summary>
         public void DungeonClear()
         {
             Console.Clear();
             Print.ColorPrintScreen(ConsoleColor.Green, "Win!\n");
-            Console.WriteLine($"보상으로 {stages[GameManager.player.StageNum - 1].gold} Gold를 획득하였습니다!"); // 클리어 보상
+            Console.WriteLine($"보상으로 {stages[player.StageNum - 1].gold} Gold를 획득하였습니다!"); // 클리어 보상
 
-            GameManager.player.playerGold += stages[GameManager.player.StageNum - 1].gold;
+            player.playerGold += stages[player.StageNum - 1].gold;
 
-            if (GameManager.player.StageNum < GameManager.Stage.stages.Count)
-                GameManager.player.StageNum++;
+            if (player.StageNum < GameManager.Stage.stages.Count)
+                player.StageNum++;
 
-            GameManager.player.GetExp(totalExp);
+            player.GetExp(totalExp);
 
-            Thread.Sleep(500);
+            Print.ColorPrintScreen(ConsoleColor.DarkGreen, "아무키나 누르세요.");
+            Console.ReadKey(true);
         }
     }
 }

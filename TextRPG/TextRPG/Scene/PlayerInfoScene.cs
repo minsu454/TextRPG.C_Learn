@@ -16,7 +16,7 @@ namespace TextRPG
             Console.WriteLine($"공격력: {GameManager.player.playerAttack}");
             Console.WriteLine($"방어력: {GameManager.player.playerDefense}");
             Console.WriteLine($"체력: {GameManager.player.playerCurHealth}/{GameManager.player.playerMaxHealth}");
-            Console.WriteLine($"마나: {GameManager.player.playerCurMana}/{GameManager.player.playerMaxMana}");
+            Console.WriteLine($"마나: {GameManager.player.playerCurMp}/{GameManager.player.playerMaxMp}");
             Console.WriteLine($"소지금: {GameManager.player.playerGold}G");
             Console.WriteLine("=========================");
 

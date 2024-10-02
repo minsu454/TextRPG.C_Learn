@@ -5,7 +5,7 @@
         public string Name { get; }
         public TargetType TargetType { get; }
         public string Comment { get; }
-        public int Mana { get; }
+        public int Mp { get; }
 
         public int Use(int playerAttack);
     }
