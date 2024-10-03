@@ -62,5 +62,13 @@ namespace TextRPG
 
             return input;
         }
+
+        public static int ReadArrow()
+        {
+            int input = (int)Console.ReadKey().Key;
+            input -= (int)ConsoleKey.LeftArrow;
+
+            return input;
+        }
     }
 }
