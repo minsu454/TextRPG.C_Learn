@@ -13,7 +13,7 @@
             Console.Write($": {player.playerCurHealth}/{player.playerMaxHealth}     ");
 
             Print.ColorPrintScreen(ConsoleColor.DarkBlue, "현재 마나", false);
-            Console.WriteLine($"현재 마나 {player.playerCurMp}/{player.playerMaxMp}");
+            Console.WriteLine($": {player.playerCurMp}/{player.playerMaxMp}");
 
             Print.ColorPrintScreen(ConsoleColor.Yellow, "현재 골드", false);
             Console.WriteLine($": {player.playerGold} G\n");

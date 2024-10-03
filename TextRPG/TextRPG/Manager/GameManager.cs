@@ -15,7 +15,7 @@ namespace TextRPG
         public readonly static SaveManager Save = new SaveManager();            //저장 매니저
         public readonly static QuestManager Quest = new QuestManager();         //퀘스트 매니저
         public readonly static EventManager Event = new EventManager();         //이벤트 매니저
-        public readonly static StageInfo Stage = new StageInfo();
+        public readonly static StageManager Stage = new StageManager();
 
         public static Player player;
         public static List<Weapon> weapondb;
@@ -29,6 +29,7 @@ namespace TextRPG
             isRun = true;
             Scene.Init();
             Quest.Init();
+            Stage.Init();
             ItemInit();
         }
 

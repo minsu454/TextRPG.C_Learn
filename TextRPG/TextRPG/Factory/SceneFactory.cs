@@ -7,9 +7,9 @@ namespace TextRPG
         /// <summary>
         /// 씬 생성자 리턴해주는 함수
         /// </summary>
-        public static BaseScene? CreateScene(SceneType type)
+        public static BaseScene CreateScene(SceneType type)
         {
-            BaseScene? scene = null;
+            BaseScene scene = null;
             switch (type)
             {
                 case SceneType.Start:
@@ -38,6 +38,9 @@ namespace TextRPG
                     break;
                 case SceneType.Gambling:
                     scene = new GamblingScene();
+                    break;
+                case SceneType.EndlessGrind:
+                    scene = new EndlessGrindScene();
                     break;
                 case SceneType.Save:
                     scene = new SaveScene();

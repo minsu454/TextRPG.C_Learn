@@ -5,6 +5,7 @@ namespace TextRPG
     public class PlayerInfoScene : BaseScene
     {
         private Player player;
+
         public override void Load()
         {
             player = GameManager.player;
@@ -18,7 +19,7 @@ namespace TextRPG
             if (input == 1)
                 SkillState();
 
-                GameManager.Scene.CloseScene();
+            GameManager.Scene.CloseScene();
         }
 
         private void PlayerState()

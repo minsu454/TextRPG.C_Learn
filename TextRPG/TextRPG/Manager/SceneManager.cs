@@ -37,7 +37,7 @@
         /// </summary>
         public void OpenScene(SceneType scene)
         {
-            if (!sceneDic.TryGetValue(scene, out BaseScene? baseScene))
+            if (!sceneDic.TryGetValue(scene, out BaseScene baseScene))
             {
                 throw new IndexOutOfRangeException($"sceneDic[{scene}]");
             }

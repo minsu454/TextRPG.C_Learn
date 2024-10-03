@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Numerics;
-using static TextRPG.StageInfo;
+using static TextRPG.StageManager;
 
 namespace TextRPG
 {
     public class DungeonScene : BaseScene, IMainScene
     {
-        List<Monster> monsters = GameManager.Stage.monsters;
+        private List<Monster> monsters = GameManager.Stage.monsters;
 
-        List<Stage> stages = GameManager.Stage.stages;
-        Random random = new Random();
-        Player player;
+        private Random random = new Random();
+        private Player player;
 
         private int MonsterIndex = 0;
         private bool isClear = false;
@@ -39,7 +38,10 @@ namespace TextRPG
             }
 
             if (isClear)
-                DungeonClear();
+                GameManager.Event.Dispatch(GameEventType.StageClear, new StageClearEventArgs()
+                { 
+                    totalExp = totalExp,
+                });
 
             GameManager.Scene.OpenScene(SceneType.Lobby);
         }
@@ -269,7 +271,6 @@ namespace TextRPG
                 Print.ColorPrintScreen(ConsoleColor.DarkGray, $"Hp {monsters[idx].Health + atkdamage} -> Dead\n");
 
                 totalExp += monsters[idx].Exp;
-
                 GameManager.Event.Dispatch(GameEventType.KillMonster, new KillMonsterEventArgs()
                 {
                     Name = $"{monsters[idx].Name}",
@@ -313,26 +314,6 @@ namespace TextRPG
         public void EndRound()
         {
             player.PlusMp(plusMp);
-        }
-
-        /// <summary>
-        /// 던전 클리어시 호출하는 함수
-        /// </summary>
-        public void DungeonClear()
-        {
-            Console.Clear();
-            Print.ColorPrintScreen(ConsoleColor.Green, "Win!\n");
-            Console.WriteLine($"보상으로 {stages[player.StageNum - 1].gold} Gold를 획득하였습니다!"); // 클리어 보상
-
-            player.playerGold += stages[player.StageNum - 1].gold;
-
-            if (player.StageNum < GameManager.Stage.stages.Count)
-                player.StageNum++;
-
-            player.GetExp(totalExp);
-
-            Print.ColorPrintScreen(ConsoleColor.DarkGreen, "아무키나 누르세요.");
-            Console.ReadKey(true);
         }
     }
 }

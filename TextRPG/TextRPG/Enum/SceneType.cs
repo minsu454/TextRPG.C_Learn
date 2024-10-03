@@ -15,8 +15,9 @@
         Dungeon = 7,        //던전
         Rest = 8,           //휴식
         Gambling = 9,       //도박
-        Save = 10,          //저장
-        StoreWeapon = 11,
-        StoreArmor = 12,
+        EndlessGrind = 10,  //노가다
+        Save = 11,          //저장
+        StoreWeapon = 12,
+        StoreArmor = 13,
     }
 }

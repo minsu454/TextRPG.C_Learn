@@ -2,5 +2,6 @@
 {
     public class StageClearEventArgs
     {
+        public int totalExp { get; set; }
     }
 }
