@@ -167,6 +167,12 @@ namespace TextRPG
                         continue;
 
                     PrintGetMonsterDamage(i, skill.Use(attack));
+
+                    if (monsters[i].Name == "Cobra")
+                    {
+                        Cobra cobra = monsters[i] as Cobra;
+                        cobra.ReceiveAttack();
+                    }
                 }
             }
         }
@@ -200,7 +206,12 @@ namespace TextRPG
             Console.WriteLine($"{player.playerName} 을(를) 맞췄습니다. [데미지 : {monsters[MonsterIndex].Attack}]");
             Console.Write($"Lv. {player.level} {player.playerName} ");
 
-            player.playerCurHealth -= monsters[MonsterIndex].Attack;
+            int attack = monsters[MonsterIndex].Attack - (player.playerDefense * 10 / 100);
+            
+            if (attack <= 0)
+                attack = 0;
+
+            player.playerCurHealth -= attack;
 
             if (player.playerCurHealth <= 0)
             {
@@ -265,6 +276,12 @@ namespace TextRPG
         {
             Console.WriteLine($"Lv.{monsters[idx].Level} {monsters[idx].Name} 을(를) 맞췄습니다. [데미지 : {atkdamage}]");
             monsters[idx].TakeDamage(atkdamage);
+
+            if (monsters[idx].Name == "Cobra")
+            {
+                Cobra cobra = monsters[idx] as Cobra;
+                cobra.ReceiveAttack();
+            }
 
             if (monsters[idx].IsDead)
             {

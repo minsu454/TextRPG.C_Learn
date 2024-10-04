@@ -16,9 +16,18 @@
         }
 
         /// <summary>
-        /// 인게임 함수
+        /// 인 게임 함수
         /// </summary>
         public void InGame()
+        {
+            int gold = Run();
+            GameOver(gold);
+        }
+
+        /// <summary>
+        /// 게임 중 함수
+        /// </summary>
+        public int Run()
         {
             int gold = 0;
             bool isFail = false;
@@ -50,7 +59,7 @@
                         break;
                     }
                 }
-                
+
                 if (isFail)
                 {
                     break;
@@ -61,7 +70,7 @@
                 }
             }
 
-            GameOver(gold);
+            return gold;
         }
 
         /// <summary>

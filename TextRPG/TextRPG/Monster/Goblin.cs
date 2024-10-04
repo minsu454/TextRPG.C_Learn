@@ -11,7 +11,7 @@ namespace TextRPG
 
     public class Goblin : Monster
     {
-        public Goblin(int level, string name)
+        public Goblin(int level, string name = "Goblin")
         {
             Level = level;
             Name = name;
@@ -33,13 +33,13 @@ namespace TextRPG
             switch (level)
             {
                 case 1:
-                    return (50, 10, 5, 1);
+                    return (50, 20, 5, 5);
                 case 2:
-                    return (70, 20, 10, 2);
+                    return (80, 30, 10, 7);
                 case 3:
-                    return (100, 30, 15, 3);
+                    return (150, 40, 15, 9);
                 case 4:
-                    return (150, 40, 20, 4);
+                    return (180, 50, 20, 11);
                 default:
                     return (0, 0, 0, 0); // 유효하지 않은 레벨의 경우 기본값
             }
