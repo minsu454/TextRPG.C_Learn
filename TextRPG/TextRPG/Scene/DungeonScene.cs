@@ -63,8 +63,30 @@ namespace TextRPG
                 MonsterAttack();
 
                 EndRound();
-                Print.ColorPrintScreen(ConsoleColor.DarkGreen, "아무키나 누르세요.");
-                Console.ReadKey(true);
+
+                if (player.playerCurHealth <= 0) // 플레이어가 죽었는지 확인
+                {
+                    Console.WriteLine($"{player.playerName}이(가) 쓰러졌습니다!\n");
+                    Console.WriteLine("마지막으로 저장된 곳으로 이동하시겠습니까?\n");
+
+                    int input = Input.Selection(1, "예.", "아니오.");
+
+                    if (input == 1)
+                    {
+                        GameManager.player = GameManager.Save.Load<Player>();
+                        break;
+                    }
+                    else
+                    {
+                        break;
+                     }
+                }
+                else
+                {
+                    Print.ColorPrintScreen(ConsoleColor.DarkGreen, "아무키나 누르세요.");
+                    Console.ReadKey(true);
+                }
+                
             }
         }
 
@@ -223,23 +245,6 @@ namespace TextRPG
             Console.WriteLine($"Hp {playerCurHealth} -> {player.playerCurHealth}\n");
 
             MonsterIndex = (++MonsterIndex) % monsters.Count;
-
-            if (player.playerCurHealth <= 0) // 플레이어가 죽었는지 확인
-            {
-                Console.WriteLine($"{player.playerName}이(가) 쓰러졌습니다!\n");
-                Console.WriteLine("마지막으로 저장된 곳으로 이동하시겠습니까?\n");
-
-                int input = Input.Selection(1, "예.", "아니오.");
-
-                if (input == 1)
-                {
-                    GameManager.player = GameManager.Save.Load<Player>();
-                }
-                else
-                {
-                    GameManager.isRun = false;
-                }
-            }
         }
 
         /// <summary>

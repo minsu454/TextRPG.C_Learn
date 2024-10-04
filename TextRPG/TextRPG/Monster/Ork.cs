@@ -10,7 +10,7 @@ namespace TextRPG
 
     public class Ork : Monster
     {
-        public Ork(int level, string name)
+        public Ork(int level, string name = "Ork")
         {
             Level = level;
             Name = name;
