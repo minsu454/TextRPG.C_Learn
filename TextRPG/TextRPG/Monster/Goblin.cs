@@ -11,7 +11,7 @@ namespace TextRPG
 
     public class Goblin : Monster
     {
-        public Goblin(int level, string name = "Goblin")
+        public Goblin(int level, string name)
         {
             Level = level;
             Name = name;
