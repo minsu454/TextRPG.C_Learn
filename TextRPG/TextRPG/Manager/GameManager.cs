@@ -6,7 +6,6 @@ using TextRPG.Interface;
 
 namespace TextRPG
 {
-
     public static class GameManager
     {
         public static bool isRun = true;
@@ -15,14 +14,14 @@ namespace TextRPG
         public readonly static SaveManager Save = new SaveManager();            //저장 매니저
         public readonly static QuestManager Quest = new QuestManager();         //퀘스트 매니저
         public readonly static EventManager Event = new EventManager();         //이벤트 매니저
-        public readonly static StageManager Stage = new StageManager();
+        public readonly static StageManager Stage = new StageManager();         //스테이지 매니저
 
-        public static Player player;
-        public static List<Weapon> weapondb;
-        public static List<Armor> armordb;
-                
+        public static Player player;                    //플레이어
+        public static List<Weapon> weapondb;            //무기데이터
+        public static List<Armor> armordb;              //방어구데이터
+
         /// <summary>
-        /// 생성 함수
+        /// 초기화 함수
         /// </summary>
         public static void Init()
         {
@@ -33,6 +32,9 @@ namespace TextRPG
             ItemInit();
         }
 
+        /// <summary>
+        /// 아이템 초기화
+        /// </summary>
         public static void ItemInit() 
         {
             weapondb = new List<Weapon>();
@@ -47,6 +49,7 @@ namespace TextRPG
             armordb.Add(new Armor("천옷", "천옷", "궁수", 10, 110));
             armordb.Add(new Armor("철갑옷", "철갑옷", "전사", 25, 140));
         }
+
         /// <summary>
         /// 업데이트 함수
         /// </summary>

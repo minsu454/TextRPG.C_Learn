@@ -2,7 +2,7 @@
 {
     public class QuestManager
     {
-        private readonly Dictionary<QuestNameType, BaseQuest> questDic = new Dictionary<QuestNameType, BaseQuest>();
+        private readonly Dictionary<QuestNameType, BaseQuest> questDic = new Dictionary<QuestNameType, BaseQuest>();        //모든 퀘스트 저장하는 dictionary
         public Dictionary<QuestNameType, BaseQuest> QuestDic {  get { return questDic; } }
 
         public void Init()

@@ -6,7 +6,7 @@
         private Stack<SceneType> sceneDepthStack = new Stack<SceneType>();                                  //씬들 보여주는 DepthStack
 
         /// <summary>
-        /// 생성 함수
+        /// 초기화 함수
         /// </summary>
         public void Init()
         {
