@@ -67,7 +67,7 @@ namespace TextRPG
                 {
                     case ConsoleKey.D1:
                         ShowJobDetails("전사", 30, 50, 700, 150, 3000);
-                        GameManager.player = new Player(playerName, "전사", 30, 50, 700, 150, 50, 3000);
+                        GameManager.player = new Player(playerName, "전사", 40, 60, 900, 150, 50, 3000);
                         break;
                     case ConsoleKey.D2:
                         ShowJobDetails("궁수", 50, 30, 500, 120, 3000);
@@ -75,7 +75,7 @@ namespace TextRPG
                         break;
                     case ConsoleKey.D3:
                         ShowJobDetails("마법사", 40, 30, 500, 200, 3000);
-                        GameManager.player = new Player(playerName, "마법사", 40, 30, 500, 200, 50, 3000);
+                        GameManager.player = new Player(playerName, "마법사", 35, 30, 500, 200, 50, 3000);
                         break;
                     case ConsoleKey.D4:
                         ShowJobDetails("도적", 60, 20, 600, 150, 3000);
