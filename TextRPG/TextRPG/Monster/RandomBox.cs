@@ -11,7 +11,7 @@ namespace TextRPG
     {
         private static Random random = new Random();
 
-        public RandomBox(int level, string name)
+        public RandomBox(int level, string name = "RandomBox")
         {
             Level = level;
             Name = name;
@@ -19,7 +19,7 @@ namespace TextRPG
             // 체력과 방어력은 고정. 
             Health = 100;
             Defence = 10;
-            Exp = 10;
+            Exp = 15;
 
             // 공격력만 랜덤으로 설정하기
             Attack = GetRandomAttackPower();

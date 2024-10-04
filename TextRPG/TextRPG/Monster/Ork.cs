@@ -10,7 +10,7 @@ namespace TextRPG
 
     public class Ork : Monster
     {
-        public Ork(int level, string name)
+        public Ork(int level, string name = "Ork")
         {
             Level = level;
             Name = name;
@@ -34,13 +34,13 @@ namespace TextRPG
             switch (level)
             {
                 case 1:
-                    return (60, 25, 5, 4);
+                    return (60, 25, 5, 7);
                 case 2:
-                    return (90, 35, 10, 6);
+                    return (90, 35, 10, 10);
                 case 3:
-                    return (160, 45, 15, 8);
+                    return (160, 45, 15, 13);
                 case 4:
-                    return (190, 55, 20, 10);
+                    return (190, 55, 20, 15);
                 default:
                     return (0, 0, 0, 0); // 유효하지 않은 레벨의 경우 기본값
             }

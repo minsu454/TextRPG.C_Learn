@@ -16,7 +16,7 @@ namespace TextRPG
 
             Print.ColorPrintScreen(ConsoleColor.Yellow, "도박장에 오신 것을 환영합니다!\n");
 
-            Print.ColorPrintScreen(ConsoleColor.Yellow, "500 Gold를 내고 슬롯머신을 1회 사용 할 수 있습니다.\n");
+            Print.ColorPrintScreen(ConsoleColor.Yellow, "100 Gold를 내고 슬롯머신을 1회 사용 할 수 있습니다.\n");
 
             Print.ColorPrintScreen(ConsoleColor.Yellow, "성공시 배팅금 5배! 잭팟시 배팅금 10배!\n");
 
@@ -123,15 +123,15 @@ namespace TextRPG
             {
                 if (result[0] == "7️")
                 {
-                    Console.WriteLine("잭팟! 배팅금의 10배를 획득했습니다!");
+                    Console.WriteLine("잭팟! 배팅금의 100배를 획득했습니다!");
 
-                    GameManager.player.playerGold += 5000;
+                    GameManager.player.playerGold += 10000;
                 }
                 else
                 {
-                    Console.WriteLine("축하합니다! 배팅금의 5배를 획득하셨습니다.");
+                    Console.WriteLine("축하합니다! 배팅금의 10배를 획득하셨습니다.");
 
-                    GameManager.player.playerGold += 2500;
+                    GameManager.player.playerGold += 1000;
                 }
             }
             else
