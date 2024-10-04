@@ -108,6 +108,7 @@ namespace TextRPG
 
                         Console.WriteLine();
                         Console.WriteLine("보상을 받았습니다.");
+                        Thread.Sleep(500);
                     }
                     break;
                 case QuestStateType.Rewarded:
