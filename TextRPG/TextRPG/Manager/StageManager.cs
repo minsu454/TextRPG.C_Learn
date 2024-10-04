@@ -7,15 +7,15 @@ namespace TextRPG
         private List<Stage> stages = new List<Stage>();
 
         public List<Monster> monsters = new List<Monster>();
-        private const int monsterTypeNum = 2;
+        private const int monsterTypeNum = 4;
 
         public StageManager()
         {
-            stages.Add(new Stage(500, 1, 2));  // 스테이지 1
-            stages.Add(new Stage(1000, 2, 3)); // 스테이지 2
-            stages.Add(new Stage(1500, 3, 5)); // 스테이지 3
-            stages.Add(new Stage(2000, 4, 6)); // 스테이지 4
-            stages.Add(new Stage(2500, 5, 6)); // 스테이지 5
+            stages.Add(new Stage(500, 2));  // 스테이지 1
+            stages.Add(new Stage(1000, 3)); // 스테이지 2
+            stages.Add(new Stage(1500, 4)); // 스테이지 3
+            stages.Add(new Stage(2000, 5)); // 스테이지 4
+            stages.Add(new Stage(2500, 6)); // 스테이지 5
         }
 
         public void Init()
@@ -37,11 +37,19 @@ namespace TextRPG
 
                 if (arr[i] == 0)
                 {
-                    monsters.Add(new Ork(moblevel, "Ork"));
+                    monsters.Add(new Ork(moblevel));
                 }
-                else
+                else if(arr[i] == 1)
                 {
-                    monsters.Add(new Goblin(moblevel, "Goblin"));
+                    monsters.Add(new Goblin(moblevel));
+                }
+                else if (arr[i] == 2)
+                {
+                    monsters.Add(new Cobra(moblevel));
+                }
+                else if (arr[i] == 3)
+                {
+                    monsters.Add(new RandomBox(moblevel));
                 }
             }
         }
@@ -74,7 +82,7 @@ namespace TextRPG
 
             Random random = new Random();
 
-            int mobcount = random.Next(stages[nowstage - 1].mobMinCount, stages[nowstage - 1].mobMaxCount + 1); // 등장하는 몹의 수
+            int mobcount = stages[nowstage - 1].mobCount; // 등장하는 몹의 수
 
             return MobReturn(mobcount);
         }
