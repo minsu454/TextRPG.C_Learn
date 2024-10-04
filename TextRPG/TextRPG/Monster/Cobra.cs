@@ -15,7 +15,7 @@ namespace TextRPG
         private int attackMultiplier = 1; // 공격횟수에 비례해서 데미지가 3씩 증가
         private int attacksReceived = 0; // 코브라가 몇 번 공격받는지 추적->0부터 시작.
 
-        public Cobra(int level, string name)
+        public Cobra(int level, string name = "Cobra")
         {
             Level = level;
             Name = name;
