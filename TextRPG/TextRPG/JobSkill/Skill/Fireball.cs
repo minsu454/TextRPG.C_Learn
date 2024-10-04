@@ -10,7 +10,7 @@
 
         public int Use(int playerAttack)
         {
-            return playerAttack + 20;
+            return playerAttack + 30;
         }
     }
 }

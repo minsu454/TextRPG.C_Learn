@@ -33,13 +33,13 @@ namespace TextRPG
             switch (level)
             {
                 case 1:
-                    return (50, 20, 5, 3);
+                    return (50, 20, 5, 5);
                 case 2:
-                    return (80, 30, 10, 5);
+                    return (80, 30, 10, 7);
                 case 3:
-                    return (150, 40, 15, 7);
+                    return (150, 40, 15, 9);
                 case 4:
-                    return (180, 50, 20, 9);
+                    return (180, 50, 20, 11);
                 default:
                     return (0, 0, 0, 0); // 유효하지 않은 레벨의 경우 기본값
             }
