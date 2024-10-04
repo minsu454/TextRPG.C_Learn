@@ -11,20 +11,21 @@ namespace TextRPG
 
     public class Cobra : Monster
     {
-        private int baseAttack = 3; // 기본 공격력
+        private int baseAttack = 0; // 기본 공격력
         private int attackMultiplier = 1; // 공격횟수에 비례해서 데미지가 3씩 증가
         private int attacksReceived = 0; // 코브라가 몇 번 공격받는지 추적->0부터 시작.
 
-        public Cobra(int level, string name)
+        public Cobra(int level, string name = "Cobra")
         {
             Level = level;
             Name = name;
 
-            (int Health, int Attack, int Defence) info = GetStatsByLevel(level);
+            (int Health, int Attack, int Defence, int exp) info = GetStatsByLevel(level);
 
             Health = info.Health;
-            Attack = baseAttack; // 기본공격력 고정
+            Attack = baseAttack = info.Attack;
             Defence = info.Defence;
+            Exp = info.exp;
         }
 
         // 코브라가 공격 할 때마다 비례 증가 만들기
@@ -34,20 +35,20 @@ namespace TextRPG
             Attack = baseAttack * attacksReceived; // 기본 공격 + 3 중첩, 첫 번째는 int가 0으로 시작하니 3부터 진행.
         }
 
-        private static (int Health, int Attack, int Defence) GetStatsByLevel(int level)
+        private static (int Health, int Attack, int Defence, int exp) GetStatsByLevel(int level)
         {
             switch (level)
             {
                 case 1:
-                    return (20, 3, 5); 
+                    return (200, 5, 5, 14); 
                 case 2:
-                    return (40, 3, 10);
+                    return (250, 6, 10, 16);
                 case 3:
-                    return (60, 3, 15);
+                    return (300, 7, 15, 18);
                 case 4:
-                    return (200, 3, 20);
+                    return (350, 8, 20, 20);
                 default:
-                    return (0, 0, 0); 
+                    return (0, 0, 0, 0); 
             }
         }
 

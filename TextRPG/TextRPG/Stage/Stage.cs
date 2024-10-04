@@ -9,14 +9,12 @@ namespace TextRPG
     public class Stage
     {
         public int gold;
-        public int mobMinCount;
-        public int mobMaxCount;
+        public int mobCount;
 
-        public Stage(int gold, int mobMinCount, int mobMaxCount)
+        public Stage(int gold, int mobCount)
         {
             this.gold = gold;
-            this.mobMinCount = mobMinCount;
-            this.mobMaxCount = mobMaxCount;
+            this.mobCount = mobCount;
         }
     }
 }

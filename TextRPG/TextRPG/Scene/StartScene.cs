@@ -66,20 +66,20 @@ namespace TextRPG
                 switch (keyInfo.Key)
                 {
                     case ConsoleKey.D1:
-                        ShowJobDetails("전사", 30, 20, 1400, 1500);
-                        GameManager.player = new Player(playerName, "전사", 30, 20, 1400, 50, 10, 1500);
+                        ShowJobDetails("전사", 30, 50, 700, 150, 3000);
+                        GameManager.player = new Player(playerName, "전사", 40, 60, 900, 150, 50, 3000);
                         break;
                     case ConsoleKey.D2:
-                        ShowJobDetails("궁수", 40, 15, 1000, 1500);
-                        GameManager.player = new Player(playerName, "궁수", 40, 15, 1000, 40, 10, 1500);
+                        ShowJobDetails("궁수", 50, 30, 500, 120, 3000);
+                        GameManager.player = new Player(playerName, "궁수", 50, 30, 500, 120, 50, 3000);
                         break;
                     case ConsoleKey.D3:
-                        ShowJobDetails("마법사", 40, 30, 900, 1500);
-                        GameManager.player = new Player(playerName, "마법사", 40, 30, 900, 100, 10, 1500);
+                        ShowJobDetails("마법사", 40, 30, 500, 200, 3000);
+                        GameManager.player = new Player(playerName, "마법사", 35, 30, 500, 200, 50, 3000);
                         break;
                     case ConsoleKey.D4:
-                        ShowJobDetails("도적", 50, 10, 900, 1500);
-                        GameManager.player = new Player(playerName, "도적", 50, 10, 900, 40, 10, 1500);
+                        ShowJobDetails("도적", 60, 20, 600, 150, 3000);
+                        GameManager.player = new Player(playerName, "도적", 60, 20, 600, 150, 50, 3000);
                         break;
                     default:
                         Console.WriteLine("잘못된 선택입니다. 다시 입력해주세요.");
@@ -89,9 +89,9 @@ namespace TextRPG
             }
         }
 
-        public void ShowJobDetails(string job, int attack, int defense, int health, int gold)
+        public void ShowJobDetails(string job, int attack, int defense, int health, int mp, int gold)
         {
-            Console.WriteLine($"\n직업: {job}\n공격력: {attack}\n방어력: {defense}\n체력: {health}\n소지금: {gold}G\n");
+            Console.WriteLine($"\n직업: {job}\n공격력: {attack}\n방어력: {defense}\n체력: {health}\n마나: {mp}\n소지금: {gold}G\n");
             Console.WriteLine("1. 선택하기\n2. 뒤로가기");
 
             ConsoleKeyInfo actionKeyInfo = Console.ReadKey(true);
@@ -109,7 +109,7 @@ namespace TextRPG
             else
             {
                 Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요.");
-                ShowJobDetails(job, attack, defense, health, gold);
+                ShowJobDetails(job, attack, defense, health, mp, gold);
             }
 
             Thread.Sleep(500);
