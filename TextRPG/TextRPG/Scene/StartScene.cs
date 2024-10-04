@@ -66,8 +66,8 @@ namespace TextRPG
                 switch (keyInfo.Key)
                 {
                     case ConsoleKey.D1:
-                        ShowJobDetails("전사", 30, 50, 700, 150, 3000);
-                        GameManager.player = new Player(playerName, "전사", 30, 50, 700, 150, 50, 3000);
+                        ShowJobDetails("전사", 30, 50, 7, 150, 3000);
+                        GameManager.player = new Player(playerName, "전사", 30, 50, 7, 150, 50, 3000);
                         break;
                     case ConsoleKey.D2:
                         ShowJobDetails("궁수", 50, 30, 500, 120, 3000);

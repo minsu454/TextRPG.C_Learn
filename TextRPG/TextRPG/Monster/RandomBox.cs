@@ -11,7 +11,7 @@ namespace TextRPG
     {
         private static Random random = new Random();
 
-        public RandomBox(int level, string name)
+        public RandomBox(int level, string name = "RandomBox")
         {
             Level = level;
             Name = name;
